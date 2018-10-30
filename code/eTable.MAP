@@ -1,0 +1,297 @@
+
+Linker Version 8.7.6.180315
+Input Object File: D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ
+Input Object File: D:\WORK\Project\Github\Segment_7_Key_TX\code\MY_FUN.OBJ
+Input Object File: D:\WORK\Project\Github\Segment_7_Key_TX\code\STARTUP0_L.OBJ
+
+Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB
+Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\v3_tabrd_mrsc.lib
+
+
+     Bank    Start     End      Length     Class    AvgIns    Name
+     00h     0000h     0000h    0001h      CODE               @code (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0001h     0012h    0012h      CODE               _Com_Sel (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     001ch     001fh    0004h      CODE               @Int_Tb0_code (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0020h     0023h    0004h      CODE               @Int_Tb1_code (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0024h     0029h    0006h      CODE               @crom (D:\WORK\Project\Github\Segment_7_Key_TX\code\MY_FUN.OBJ)
+     00h     002ch     002fh    0004h      CODE               @Int_Rx_code (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0030h     007ch    004dh      CODE               @start (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     007dh     00a2h    0026h      CODE               @crom (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00a3h     00c9h    0027h      CODE               _Init_Vars (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00cah     00e5h    001ch      CODE               _Led_Current_Set (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00e6h     0120h    003bh      CODE               _Init_System (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0121h     0167h    0047h      CODE               _Digit_Set (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0168h     01c8h    0061h      CODE               _Led_Scan (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     01c9h     01deh    0016h      CODE               _EE_Write (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     01dfh     01f4h    0016h      CODE               _EE_Read (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     01f5h     0245h    0051h      CODE               _Key_Scan (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0246h     0265h    0020h      CODE               _RS232_SendBuf (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0266h     0287h    0022h      CODE               _Key_Tx (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0288h     04b8h    0231h      CODE               _Command_Parse (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     04b9h     04e7h    002fh      CODE               _main (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     04e8h     0503h    001ch      CODE               _Int_Tb0 (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0504h     0522h    001fh      CODE               _Int_Tb1 (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0523h     0567h    0045h      CODE               _Int_Rx (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     0568h     0588h    0021h      CODE               _my_strcpy (D:\WORK\Project\Github\Segment_7_Key_TX\code\MY_FUN.OBJ)
+     00h     0589h     0596h    000eh      CODE               _Hex2char (D:\WORK\Project\Github\Segment_7_Key_TX\code\MY_FUN.OBJ)
+     00h     0597h     05ach    0016h      CODE               _Char2hex (D:\WORK\Project\Github\Segment_7_Key_TX\code\MY_FUN.OBJ)
+     00h     05adh     05b7h    000bh      CODE               @ROMDATA_BASE (D:\WORK\Project\Github\Segment_7_Key_TX\code\STARTUP0_L.OBJ)
+     00h     05b8h     05cah    0013h      CODE               _builtin_holtek_mulhi3_isr00 (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     05cbh     05dch    0012h      CODE               _CROM2PROM (CROM2PROM)
+     00h     00a0h     00a9h    000ah      DATA     3.1       @HCCINIT (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00aah     00cfh    0026h      DATA     1.6316    @HCCINIT0 (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00d0h     00d0h    0001h      DATA     0         @BITDATASEC (D:\WORK\Project\Github\Segment_7_Key_TX\code\STARTUP0_L.OBJ)
+     00h     00d1h     00d1h    0001h      DATA     125       @data_ra (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00d2h     00d2h    0001h      DATA     61        @data_rb (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00d3h     00d3h    0001h      DATA     41        @data_rc (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00d4h     00d4h    0001h      DATA     19        @data_rd (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00d5h     00d5h    0001h      DATA     13        @data_re (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00d6h     00d6h    0001h      DATA     8         @data_rf (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00d7h     00d7h    0001h      DATA     8         @data_rg (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00d8h     00d8h    0001h      DATA     48        @data_ra00 (isr:ra~rh)
+     00h     00d9h     00d9h    0001h      DATA     14        @data_rb00 (isr:ra~rh)
+     00h     00dah     00dah    0001h      DATA     10        @data_rc00 (isr:ra~rh)
+     00h     00dbh     00dbh    0001h      DATA     8         @data_rd00 (isr:ra~rh)
+     00h     00dch     00dch    0001h      DATA     14        @data_rf00 (isr:ra~rh)
+     00h     00ddh     00ddh    0001h      DATA     8         @data_rg00 (isr:ra~rh)
+     00h     00deh     00deh    0001h      DATA     3         @data_rh00 (isr:ra~rh)
+     00h     00dfh     00dfh    0001h      DATA     2         @data_re00 (isr:ra~rh)
+     00h     00e0h     00e0h    0001h      DATA     6         @data_r100 (isr:ra~rh)
+     00h     00e1h     00e1h    0001h      DATA     6         @data_r200 (isr:ra~rh)
+     00h     00e2h     00e2h    0001h      DATA     6         @data_r300 (isr:ra~rh)
+     00h     00e3h     00e3h    0001h      DATA     6         @data_r400 (isr:ra~rh)
+     00h     00e4h     00e4h    0001h      DATA     6         @data_r500 (isr:ra~rh)
+     00h     00e5h     00e5h    0001h      DATA     4         @data_r600 (isr:ra~rh)
+     00h     00e6h     00e6h    0001h      DATA     4         @data_r700 (isr:ra~rh)
+
+     Local Sections
+
+     Bank    Start     End      Length     Class    AvgIns    Name
+     00h     00fah     00fah    0000h      LOCAL    0         @dummy (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00fah     00fah    0000h      LOCAL    0         _main (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00ech     00ech    0000h      LOCAL    0         _Init_Vars (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00edh     00edh    0000h      LOCAL    0         _Init_System (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00ech     00ech    0001h      LOCAL    3         _Led_Current_Set (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00ech     00efh    0004h      LOCAL    11        _my_strcpy (D:\WORK\Project\Github\Segment_7_Key_TX\code\MY_FUN.OBJ)
+     00h     00e7h     00e7h    0000h      LOCAL    0         _Crom2Prom (CROM2PROM)
+     00h     00ech     00eeh    0003h      LOCAL    7.6667    _RS232_SendBuf (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00f2h     00f9h    0008h      LOCAL    6.875     _Command_Parse (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00f0h     00f0h    0000h      LOCAL    0         _Key_Tx (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00ech     00ech    0001h      LOCAL    2         _Hex2char (D:\WORK\Project\Github\Segment_7_Key_TX\code\MY_FUN.OBJ)
+     00h     00ech     00ech    0001h      LOCAL    3         _Char2hex (D:\WORK\Project\Github\Segment_7_Key_TX\code\MY_FUN.OBJ)
+     00h     00ech     00ech    0001h      LOCAL    1         _EE_Read (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00ech     00edh    0002h      LOCAL    1.5       _EE_Write (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00ech     00f1h    0006h      LOCAL    7.1667    _builtin_holtek_mulhi3_isr00 (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00ech     00ech    0000h      LOCAL    0         @dummy28 (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00ech     00ech    0000h      LOCAL    0         _Int_Tb0 (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00e8h     00ebh    0004h      LOCAL    4         _Led_Scan (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00e7h     00e7h    0001h      LOCAL    8         _Digit_Set (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00e7h     00e7h    0001h      LOCAL    4         _Com_Sel (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00e7h     00e7h    0000h      LOCAL    0         @dummy32 (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00e7h     00e7h    0000h      LOCAL    0         _Int_Tb1 (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00e7h     00e7h    0000h      LOCAL    0         _Key_Scan (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00e9h     00e9h    0000h      LOCAL    0         @dummy44 (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+     00h     00e7h     00e8h    0002h      LOCAL    4.5       _Int_Rx (D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ)
+
+     Public Symbols Information
+     Address            Public by Name
+     0597h              _Char2hex
+     0001h              _Com_Sel
+     0288h              _Command_Parse
+     05cch              _Crom2Prom
+     05cbh              _Crom2PromNext
+     0121h              _Digit_Set
+     01dfh              _EE_Read
+     01c9h              _EE_Write
+     00edh              _EE_Write_2
+     0589h              _Hex2char
+     00e6h              _Init_System
+     00a3h              _Init_Vars
+     0523h              _Int_Rx
+     04e8h              _Int_Tb0
+     0504h              _Int_Tb1
+     01f5h              _Key_Scan
+     0266h              _Key_Tx
+     00cah              _Led_Current_Set
+     0168h              _Led_Scan
+     0246h              _RS232_SendBuf
+     00eeh              _RS232_SendBuf_2
+     00aeh              _buff_rx
+     00bfh              _buff_tx
+     05b8h              _builtin_holtek_mulhi3_isr00
+     00f0h              _builtin_holtek_mulhi3_isr00_2
+     00a4h              _com
+     0096h              _date_code
+     00a7h              _height_str
+     00d0h[0]           _key_cont
+     00a6h              _key_stat
+     00a0h              _led_duty
+     00a2h              _led_period
+     04b9h              _main
+     0568h              _my_strcpy
+     00efh              _my_strcpy_2
+     00a5h              _ptr_buff
+     00d0h[1]           _rx_received
+     009ah              _seg_7_table
+     00e0h              r100
+     00e1h              r200
+     00e2h              r300
+     00e3h              r400
+     00e4h              r500
+     00e5h              r600
+     00e6h              r700
+     00d1h              ra
+     00d8h              ra00
+     00d2h              rb
+     00d9h              rb00
+     00d3h              rc
+     00dah              rc00
+     00d4h              rd
+     00dbh              rd00
+     00d5h              re
+     00dfh              re00
+     00d6h              rf
+     00dch              rf00
+     00d7h              rg
+     00ddh              rg00
+     00deh              rh00
+     05adh              startup_value_1
+
+     Address            Public by Value
+     0001h              _Com_Sel
+     0096h              _date_code
+     009ah              _seg_7_table
+     00a0h              _led_duty
+     00a2h              _led_period
+     00a3h              _Init_Vars
+     00a4h              _com
+     00a5h              _ptr_buff
+     00a6h              _key_stat
+     00a7h              _height_str
+     00aeh              _buff_rx
+     00bfh              _buff_tx
+     00cah              _Led_Current_Set
+     00d1h              ra
+     00d2h              rb
+     00d3h              rc
+     00d4h              rd
+     00d5h              re
+     00d6h              rf
+     00d7h              rg
+     00d8h              ra00
+     00d9h              rb00
+     00dah              rc00
+     00dbh              rd00
+     00dch              rf00
+     00ddh              rg00
+     00deh              rh00
+     00dfh              re00
+     00e0h              r100
+     00e1h              r200
+     00e2h              r300
+     00e3h              r400
+     00e4h              r500
+     00e5h              r600
+     00e6h              r700
+     00e6h              _Init_System
+     00edh              _EE_Write_2
+     00eeh              _RS232_SendBuf_2
+     00efh              _my_strcpy_2
+     00f0h              _builtin_holtek_mulhi3_isr00_2
+     0121h              _Digit_Set
+     0168h              _Led_Scan
+     01c9h              _EE_Write
+     01dfh              _EE_Read
+     01f5h              _Key_Scan
+     0246h              _RS232_SendBuf
+     0266h              _Key_Tx
+     0288h              _Command_Parse
+     04b9h              _main
+     04e8h              _Int_Tb0
+     0504h              _Int_Tb1
+     0523h              _Int_Rx
+     0568h              _my_strcpy
+     0589h              _Hex2char
+     0597h              _Char2hex
+     05adh              startup_value_1
+     05b8h              _builtin_holtek_mulhi3_isr00
+     05cbh              _Crom2PromNext
+     05cch              _Crom2Prom
+     00d0h[0]           _key_cont
+     00d0h[1]           _rx_received
+
+
+ROM Usage Statistics
+     Size      Used     Percentage
+     1000h     05d2h    36%
+
+RAM Usage Statistics
+    Bank      Size      Used     Percentage
+     00h       0060h     005ah    93%
+     01h       0060h     0000h    0%
+     Total     00c0h     005ah    46%
+
+Use Stack Count
+_main: 4
+_Int_Tb0: 2
+_Int_Tb1: 1
+_Int_Rx: 0
+_utoa: 1
+_atou: 1
+
+Call Tree
+    @dummy
+        _main (0)
+            _Init_Vars (1)
+            _Init_System (1)
+                _Led_Current_Set (2)
+            _my_strcpy (1)
+                _Crom2Prom (2)
+            _RS232_SendBuf (1)
+                _Crom2Prom (2)
+            _Command_Parse (1)
+                _my_strcpy (2)
+                    _Crom2Prom (3)
+                _Key_Tx (2)
+                    _my_strcpy (3)
+                        _Crom2Prom (4)
+                    _Hex2char (3)
+                    _RS232_SendBuf (3)
+                        _Crom2Prom (4)
+                _Char2hex (2)
+                _EE_Read (2)
+                _Hex2char (2)
+                _EE_Write (2)
+                _Led_Current_Set (2)
+                _builtin_holtek_mulhi3_isr00 (2)
+                _Crom2Prom (2)
+                _RS232_SendBuf (2)
+                    _Crom2Prom (3)
+            _Key_Tx (1)
+                _my_strcpy (2)
+                    _Crom2Prom (3)
+                _Hex2char (2)
+                _RS232_SendBuf (2)
+                    _Crom2Prom (3)
+    @dummy28
+        _Int_Tb0 (0)
+            _Led_Scan (1)
+                _Digit_Set (2)
+                _Com_Sel (2)
+                _Crom2Prom (2)
+    @dummy32
+        _Int_Tb1 (0)
+            _Key_Scan (1)
+    @dummy44
+        _Int_Rx (0)
+    _utoa
+        _builtin_holtek_divmodhi4_isr00 (0)
+        _Crom2Prom (0)
+    _atou
+        _Crom2Prom (0)
+        _Char2hex (0)
+        _builtin_holtek_mulhi3_isr00 (0)
+
+HLINK: Program entry point at section '@code' (address 0) of file 'D:\WORK\Project\Github\Segment_7_Key_TX\code\ETABLE.OBJ'
+
+Total 0 error(s), Total 0 Warning(s)
