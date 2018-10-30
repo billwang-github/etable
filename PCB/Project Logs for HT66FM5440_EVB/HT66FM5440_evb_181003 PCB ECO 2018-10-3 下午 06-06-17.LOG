@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=OCD_SCK Pin=J3-2
+Removed Pin From Net: NetName=OCD_SDA Pin=J3-3
+Added Pin To Net: NetName=OCD_SDA Pin=J3-2
+Added Pin To Net: NetName=OCD_SCK Pin=J3-3

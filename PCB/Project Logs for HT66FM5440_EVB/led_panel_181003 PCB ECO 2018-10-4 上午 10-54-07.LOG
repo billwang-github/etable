@@ -1,0 +1,26 @@
+Added Component: Designator=C1(CAPPRV250-650X1118)
+Added Component: Designator=JP1(CON-12X1-DIP-2.54mm)
+Added Component: Designator=JP2(CON-12X1-DIP-2.54mm)
+Added Pin To Net: NetName=VCC Pin=C1-1
+Added Pin To Net: NetName=GND_SIGNAL Pin=C1-2
+Added Pin To Net: NetName=SA Pin=JP1-1
+Added Pin To Net: NetName=SB Pin=JP1-2
+Added Pin To Net: NetName=SC Pin=JP1-3
+Added Pin To Net: NetName=SD Pin=JP1-4
+Added Pin To Net: NetName=SE Pin=JP1-5
+Added Pin To Net: NetName=SF Pin=JP1-6
+Added Pin To Net: NetName=SG Pin=JP1-7
+Added Pin To Net: NetName=SDP Pin=JP1-8
+Added Pin To Net: NetName=C1 Pin=JP1-9
+Added Pin To Net: NetName=C2 Pin=JP1-10
+Added Pin To Net: NetName=C3 Pin=JP1-11
+Added Pin To Net: NetName=GND_SIGNAL Pin=JP1-12
+Added Pin To Net: NetName=S1 Pin=JP2-1
+Added Pin To Net: NetName=S2 Pin=JP2-2
+Added Pin To Net: NetName=S3 Pin=JP2-3
+Added Pin To Net: NetName=S4 Pin=JP2-4
+Added Pin To Net: NetName=S5 Pin=JP2-5
+Added Pin To Net: NetName=S6 Pin=JP2-6
+Added Pin To Net: NetName=S7 Pin=JP2-7
+Added Pin To Net: NetName=S8 Pin=JP2-8
+Added Pin To Net: NetName=GND_SIGNAL Pin=JP2-12

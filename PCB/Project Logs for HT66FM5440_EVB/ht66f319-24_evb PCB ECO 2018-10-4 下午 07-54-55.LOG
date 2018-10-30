@@ -1,0 +1,72 @@
+Added Component: Designator=C1(C-0805)
+Added Component: Designator=J3(CON-4X1-DIP-2.54mm)
+Added Component: Designator=J4(CON-4X1-DIP-2.54mm)
+Added Component: Designator=J5(CON-2X1-DIP-2.54mm)
+Added Component: Designator=J6(CON-2X1-DIP-2.54mm)
+Added Component: Designator=J7(CON-2X1-DIP-2.54mm)
+Added Component: Designator=U1(SSO-24)
+Added Pin To Net: NetName=ICPDA Pin=J4-2
+Added Pin To Net: NetName=ICPDA Pin=U1-7
+Added Net: Name=ICPDA
+Added Pin To Net: NetName=ICPDK Pin=J4-3
+Added Net: Name=ICPDK
+Added Pin To Net: NetName=IPCCK Pin=U1-9
+Added Net: Name=IPCCK
+Added Pin To Net: NetName=PA1 Pin=U1-8
+Added Net: Name=PA1
+Added Pin To Net: NetName=PA3 Pin=U1-10
+Added Net: Name=PA3
+Added Pin To Net: NetName=PA4 Pin=U1-18
+Added Net: Name=PA4
+Added Pin To Net: NetName=PA5 Pin=U1-17
+Added Net: Name=PA5
+Added Pin To Net: NetName=PA6 Pin=U1-16
+Added Net: Name=PA6
+Added Pin To Net: NetName=PA7 Pin=U1-15
+Added Net: Name=PA7
+Added Pin To Net: NetName=PB0 Pin=U1-23
+Added Net: Name=PB0
+Added Pin To Net: NetName=PB1 Pin=U1-22
+Added Net: Name=PB1
+Added Pin To Net: NetName=PB2 Pin=U1-21
+Added Net: Name=PB2
+Added Pin To Net: NetName=PB3 Pin=U1-14
+Added Net: Name=PB3
+Added Pin To Net: NetName=PB4 Pin=U1-13
+Added Net: Name=PB4
+Added Pin To Net: NetName=PB5 Pin=U1-12
+Added Net: Name=PB5
+Added Pin To Net: NetName=PB6 Pin=U1-11
+Added Net: Name=PB6
+Added Pin To Net: NetName=PC0 Pin=U1-2
+Added Net: Name=PC0
+Added Pin To Net: NetName=PC1 Pin=U1-3
+Added Net: Name=PC1
+Added Pin To Net: NetName=PC2 Pin=U1-4
+Added Net: Name=PC2
+Added Pin To Net: NetName=PC3 Pin=J3-2
+Added Pin To Net: NetName=PC3 Pin=U1-5
+Added Net: Name=PC3
+Added Pin To Net: NetName=PC4 Pin=J3-3
+Added Pin To Net: NetName=PC4 Pin=U1-6
+Added Net: Name=PC4
+Added Pin To Net: NetName=PC5 Pin=U1-19
+Added Net: Name=PC5
+Added Pin To Net: NetName=PC6 Pin=U1-20
+Added Net: Name=PC6
+Added Pin To Net: NetName=VDD Pin=C1-2
+Added Pin To Net: NetName=VDD Pin=J3-1
+Added Pin To Net: NetName=VDD Pin=J4-1
+Added Pin To Net: NetName=VDD Pin=J5-1
+Added Pin To Net: NetName=VDD Pin=J5-2
+Added Pin To Net: NetName=VDD Pin=U1-24
+Added Net: Name=VDD
+Added Pin To Net: NetName=VSS Pin=C1-1
+Added Pin To Net: NetName=VSS Pin=J3-4
+Added Pin To Net: NetName=VSS Pin=J4-4
+Added Pin To Net: NetName=VSS Pin=J6-1
+Added Pin To Net: NetName=VSS Pin=J6-2
+Added Pin To Net: NetName=VSS Pin=J7-1
+Added Pin To Net: NetName=VSS Pin=J7-2
+Added Pin To Net: NetName=VSS Pin=U1-1
+Added Net: Name=VSS
