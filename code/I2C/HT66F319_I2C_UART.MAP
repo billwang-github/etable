@@ -1,0 +1,282 @@
+
+Linker Version 8.7.6.180315
+Input Object File: D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ
+Input Object File: D:\WORK\Project\Github\etable\code\I2C\MY_FUN.OBJ
+Input Object File: D:\WORK\Project\Github\etable\code\I2C\STARTUP0_L.OBJ
+Input Object File: D:\WORK\Project\Github\etable\code\I2C\I2C_MASTER.OBJ
+
+Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB
+Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\v3_tabrd_mrsc.lib
+
+
+     Bank    Start     End      Length     Class    AvgIns    Name
+     00h     0000h     0000h    0001h      CODE               @code (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     0001h     000dh    000dh      CODE               @crom (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     000eh     0013h    0006h      CODE               @crom (D:\WORK\Project\Github\etable\code\I2C\MY_FUN.OBJ)
+     00h     0014h     0019h    0006h      CODE               _Int_UART (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     001ch     001fh    0004h      CODE               @Int_Tb0_code (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     0020h     0023h    0004h      CODE               @Int_Tb1_code (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     0028h     002bh    0004h      CODE               @Int_I2C_code (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     002ch     002fh    0004h      CODE               @Int_UART_code (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     0030h     007ch    004dh      CODE               @start (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     007dh     009ch    0020h      CODE               _Init_Vars (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     009dh     00b1h    0015h      CODE               _EE_Write (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00b2h     00c6h    0015h      CODE               _EE_Read (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c7h     0123h    005dh      CODE               _Command_Parse (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     0124h     013fh    001ch      CODE               _Led_Current_Set (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     0140h     017ch    003dh      CODE               _Init_System (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     017dh     018ch    0010h      CODE               _main (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     018dh     01cbh    003fh      CODE               _Digit_Set (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     01cch     01ddh    0012h      CODE               _Com_Sel (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     01deh     023eh    0061h      CODE               _Led_Scan (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     023fh     028fh    0051h      CODE               _Key_Scan (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     0290h     02abh    001ch      CODE               _Int_Tb0 (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     02ach     02cah    001fh      CODE               _Int_Tb1 (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     02cbh     031ah    0050h      CODE               _Int_I2C (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     031bh     0326h    000ch      CODE               @ROMDATA_BASE (D:\WORK\Project\Github\etable\code\I2C\STARTUP0_L.OBJ)
+     00h     0327h     0336h    0010h      CODE               _CROM2PROM (CROM2PROM)
+     00h     0080h     008ah    000bh      DATA     2.3636    @HCCINIT (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     008bh     00b0h    0026h      DATA     0.5526    @HCCINIT0 (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00b1h     00b1h    0001h      DATA     0         @BITDATASEC (D:\WORK\Project\Github\etable\code\I2C\STARTUP0_L.OBJ)
+     00h     00b2h     00b2h    0001h      DATA     72        @data_ra (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00b3h     00b3h    0001h      DATA     32        @data_rb (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00b4h     00b4h    0001h      DATA     28        @data_rc (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00b5h     00b5h    0001h      DATA     17        @data_rd (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V7.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     00b6h     00b6h    0001h      DATA     42        @data_ra00 (isr:ra~rh)
+     00h     00b7h     00b7h    0001h      DATA     14        @data_rb00 (isr:ra~rh)
+     00h     00b8h     00b8h    0001h      DATA     10        @data_rc00 (isr:ra~rh)
+     00h     00b9h     00b9h    0001h      DATA     8         @data_rd00 (isr:ra~rh)
+     00h     00bah     00bah    0001h      DATA     14        @data_rf00 (isr:ra~rh)
+     00h     00bbh     00bbh    0001h      DATA     8         @data_rg00 (isr:ra~rh)
+     00h     00bch     00bch    0001h      DATA     3         @data_rh00 (isr:ra~rh)
+     00h     00bdh     00bdh    0001h      DATA     2         @data_re00 (isr:ra~rh)
+     00h     00beh     00beh    0001h      DATA     8         @data_r100 (isr:ra~rh)
+     00h     00bfh     00bfh    0001h      DATA     8         @data_r200 (isr:ra~rh)
+     00h     00c0h     00c0h    0001h      DATA     6         @data_r300 (isr:ra~rh)
+     00h     00c1h     00c1h    0001h      DATA     6         @data_r400 (isr:ra~rh)
+     00h     00c2h     00c2h    0001h      DATA     6         @data_r500 (isr:ra~rh)
+     00h     00c3h     00c3h    0001h      DATA     6         @data_r600 (isr:ra~rh)
+     00h     00c4h     00c4h    0001h      DATA     6         @data_r700 (isr:ra~rh)
+
+     Local Sections
+
+     Bank    Start     End      Length     Class    AvgIns    Name
+     00h     00d2h     00d2h    0000h      LOCAL    0         @dummy (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00d1h     00d1h    0001h      LOCAL    4         _main (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00cah     00cah    0000h      LOCAL    0         _Init_Vars (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00cbh     00cbh    0000h      LOCAL    0         _Init_System (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00cah     00cah    0001h      LOCAL    3         _Led_Current_Set (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00cah     00cbh    0002h      LOCAL    2.5       _EE_Write (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00cch     00d0h    0005h      LOCAL    4.6       _Command_Parse (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00cah     00cah    0001h      LOCAL    2         _EE_Read (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00cah     00cah    0000h      LOCAL    0         @dummy28 (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00cah     00cah    0000h      LOCAL    0         _Int_Tb0 (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c6h     00c9h    0004h      LOCAL    4         _Led_Scan (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c5h     00c5h    0001h      LOCAL    8         _Digit_Set (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c5h     00c5h    0001h      LOCAL    4         _Com_Sel (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c5h     00c5h    0000h      LOCAL    0         _Crom2Prom (CROM2PROM)
+     00h     00c5h     00c5h    0000h      LOCAL    0         @dummy32 (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c5h     00c5h    0000h      LOCAL    0         _Int_Tb1 (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c5h     00c5h    0000h      LOCAL    0         _Key_Scan (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c5h     00c5h    0000h      LOCAL    0         @dummy44 (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c5h     00c5h    0000h      LOCAL    0         _Int_UART (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c6h     00c6h    0000h      LOCAL    0         @dummy40 (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+     00h     00c5h     00c5h    0001h      LOCAL    1         _Int_I2C (D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ)
+
+     Public Symbols Information
+     Address            Public by Name
+     01cch              _Com_Sel
+     00c7h              _Command_Parse
+     0327h              _Crom2Prom
+     0327h              _Crom2PromNext
+     018dh              _Digit_Set
+     00b2h              _EE_Read
+     009dh              _EE_Write
+     00cah              _EE_Write_2
+     0140h              _Init_System
+     007dh              _Init_Vars
+     02cbh              _Int_I2C
+     0290h              _Int_Tb0
+     02ach              _Int_Tb1
+     0014h              _Int_UART
+     023fh              _Key_Scan
+     0124h              _Led_Current_Set
+     01deh              _Led_Scan
+     00b1h[0]           _b_ee_data_ready
+     00a0h              _buff_i2c_rx
+     008fh              _buff_i2c_tx
+     008ah              _com
+     0001h              _date_code
+     0083h              _height_str
+     0082h              _key_stat
+     0086h              _led_duty
+     0088h              _led_period
+     017dh              _main
+     0081h              _ptr_i2c_rx_buff
+     0080h              _ptr_i2c_tx_buff
+     0005h              _seg_7_table
+     00beh              r100
+     00bfh              r200
+     00c0h              r300
+     00c1h              r400
+     00c2h              r500
+     00c3h              r600
+     00c4h              r700
+     00b2h              ra
+     00b6h              ra00
+     00b3h              rb
+     00b7h              rb00
+     00b4h              rc
+     00b8h              rc00
+     00b5h              rd
+     00b9h              rd00
+     00bdh              re00
+     00bah              rf00
+     00bbh              rg00
+     00bch              rh00
+     031bh              startup_value_1
+
+     Address            Public by Value
+     0001h              _date_code
+     0005h              _seg_7_table
+     0014h              _Int_UART
+     007dh              _Init_Vars
+     0080h              _ptr_i2c_tx_buff
+     0081h              _ptr_i2c_rx_buff
+     0082h              _key_stat
+     0083h              _height_str
+     0086h              _led_duty
+     0088h              _led_period
+     008ah              _com
+     008fh              _buff_i2c_tx
+     009dh              _EE_Write
+     00a0h              _buff_i2c_rx
+     00b2h              _EE_Read
+     00b2h              ra
+     00b3h              rb
+     00b4h              rc
+     00b5h              rd
+     00b6h              ra00
+     00b7h              rb00
+     00b8h              rc00
+     00b9h              rd00
+     00bah              rf00
+     00bbh              rg00
+     00bch              rh00
+     00bdh              re00
+     00beh              r100
+     00bfh              r200
+     00c0h              r300
+     00c1h              r400
+     00c2h              r500
+     00c3h              r600
+     00c4h              r700
+     00c7h              _Command_Parse
+     00cah              _EE_Write_2
+     0124h              _Led_Current_Set
+     0140h              _Init_System
+     017dh              _main
+     018dh              _Digit_Set
+     01cch              _Com_Sel
+     01deh              _Led_Scan
+     023fh              _Key_Scan
+     0290h              _Int_Tb0
+     02ach              _Int_Tb1
+     02cbh              _Int_I2C
+     031bh              startup_value_1
+     0327h              _Crom2PromNext
+     0327h              _Crom2Prom
+     00b1h[0]           _b_ee_data_ready
+
+
+ROM Usage Statistics
+     Size      Used     Percentage
+     2000h     0331h    9%
+
+RAM Usage Statistics
+    Bank      Size      Used     Percentage
+     00h       0080h     0052h    64%
+     01h       0080h     0000h    0%
+     Total     0100h     0052h    32%
+
+Use Stack Count
+_main: 2
+_Int_Tb0: 2
+_Int_Tb1: 1
+_Int_UART: 0
+_Int_I2C: 1
+_my_strcpy: 1
+_my_strcpy1: 1
+_my_strcmp: 1
+_utoa: 1
+_atou: 1
+_I2c_Write: 4
+_I2c_Read: 4
+
+Call Tree
+    @dummy
+        _main (0)
+            _Init_Vars (1)
+            _Init_System (1)
+                _Led_Current_Set (2)
+            _EE_Write (1)
+            _Command_Parse (1)
+                _EE_Read (2)
+                _EE_Write (2)
+    @dummy28
+        _Int_Tb0 (0)
+            _Led_Scan (1)
+                _Digit_Set (2)
+                _Com_Sel (2)
+                _Crom2Prom (2)
+    @dummy32
+        _Int_Tb1 (0)
+            _Key_Scan (1)
+    @dummy44
+        _Int_UART (0)
+    @dummy40
+        _Int_I2C (0)
+            _Crom2Prom (1)
+    _my_strcpy
+        _Crom2Prom (0)
+    _my_strcpy1
+        _Crom2Prom (0)
+    _my_strcmp
+        _Crom2Prom (0)
+    _utoa
+        _builtin_holtek_divmodhi4_isr00 (0)
+        _Crom2Prom (0)
+    _atou
+        _Crom2Prom (0)
+        _Char2hex (0)
+        _builtin_holtek_mulhi3_isr00 (0)
+    _I2c_Write
+        _I2c_SendStart (0)
+            _Delay (1)
+        _I2c_SendByte (0)
+            _Delay (1)
+            _Wait_Ack (1)
+                _Delay (2)
+                _I2c_SendStop (2)
+                    _Delay (3)
+        _Crom2Prom (0)
+        _I2c_SendStop (0)
+            _Delay (1)
+    _I2c_Read
+        _I2c_SendStart (0)
+            _Delay (1)
+        _I2c_SendByte (0)
+            _Delay (1)
+            _Wait_Ack (1)
+                _Delay (2)
+                _I2c_SendStop (2)
+                    _Delay (3)
+        _I2c_ReadByte (0)
+            _Delay (1)
+        _I2c_SendStop (0)
+            _Delay (1)
+        _Delay (0)
+
+HLINK: Program entry point at section '@code' (address 0) of file 'D:\WORK\Project\Github\etable\code\I2C\HT66F319_I2C_UART.OBJ'
+
+Total 0 error(s), Total 0 Warning(s)
