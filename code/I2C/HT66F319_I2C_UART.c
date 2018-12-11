@@ -5,7 +5,7 @@
 //#include "HT66F318.h"
 #include "my_func.h"
 
-#define BUFF_LEN 17 // plus end character '0'
+#define BUFF_LEN 16 
 
 //#define TX 	_pc3
 //#define RX 	_pc4
@@ -48,16 +48,17 @@
 #define WDT_SET(x) (x == ON)? (_wdtc = 0b01010111): (_wdtc = 0b10101111) //wdtc on off
 
 const uint8_t seg_7_table[16] ={0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F, 0x77, 0x7C, 0x39, 0x5E, 0x79, 0x71};
-const char date_code[9] ="18102300";
+const char date_code[9] ="18120700";
 
 volatile uint8_t com =0x01;
 volatile uint16_t led_period = 900, led_duty = 450;//1sec=1953
 
+uint16_t height = 000;
 uint8_t height_str[3] = "FFF"; // height_str[2]:MSB
 
 uint8_t key_stat = 0;
 
-uint8_t buff_i2c_rx[BUFF_LEN], buff_i2c_tx[BUFF_LEN];
+uint8_t buff_i2c_rx[BUFF_LEN], buff_i2c_tx[BUFF_LEN + 3], buff_test[8];
 volatile uint8_t ptr_i2c_rx_buff = 0, ptr_i2c_tx_buff = 0; // number of the received data	
 
 bit b_ee_data_ready = 0;
@@ -65,31 +66,44 @@ bit b_ee_data_ready = 0;
 void Init_System(void);
 void Init_Vars(void);
 
-uint8_t EE_Write(uint8_t addr, uint8_t data);
-uint8_t EE_Read(uint8_t addr);
-
 void Led_Current_Set(uint8_t level);
 void Digit_Set(uint8_t led);
 void Com_Sel(uint8_t sel);
 void Led_scan(void);
 
 uint8_t Key_Scan(void);
+void Clear_Rx(void);
 
 void Command_Parse(void);
 
+void Power_On_Reset(void);
+
 void main()
 {	
-	uint8_t u8temp, i;
+	uint8_t  i;
+	volatile uint32_t temp;
 	
 	Init_Vars();
 	Init_System();			
 
-/*==== EEPROM write test ====*/	
-	for (i = 0; i < 16; i++)
-	{
-		EE_Write(i, 0x00);
-	}
+//	buff_i2c_tx[0] = '1';
+//	buff_i2c_tx[1] = '2';
+//	buff_i2c_tx[2] = '3';
+//	buff_i2c_tx[3] = '4';
+//	buff_i2c_tx[4] = '5';
+//	buff_i2c_tx[5] = '\0';
 
+/*==== EEPROM write test ====*/	
+//	for (i = 0; i < 7; i++)
+//	{
+//		EE_Write_Byte(i, 0xFF);
+//	}
+//	
+//	for (i = 0; i < 7; i++)
+//	{
+//		buff_i2c_tx[i] = EE_Read_Byte(i);
+//	}
+	
 	EMI_ON();
 					
 	while (1)
@@ -127,49 +141,116 @@ void main()
 
 void Command_Parse(void)
 {
-	volatile uint8_t ee_addr, ee_data, u8temp, i, n;
-	
-	if ((buff_i2c_rx[0] == 0x01) && (ptr_i2c_rx_buff == 4)) // 01: set height
+	volatile uint8_t ee_addr, ee_data, i, n;
+	//uint16_t dlycnt;
+	static uint8_t u8temp = 0x00;
+
+	if ((buff_i2c_rx[0] == 0x00) && (ptr_i2c_rx_buff >= 1)) // Read firmware version
+	{
+		my_strcpy1(8, buff_i2c_tx, date_code);
+		Clear_Rx();
+	}	
+	else if ((buff_i2c_rx[0] == 0x01) && (ptr_i2c_rx_buff >= 4)) // 01: set height(string)
 	{
 		height_str[2] = buff_i2c_rx[1];
 		height_str[1] = buff_i2c_rx[2];
 		height_str[0] = buff_i2c_rx[3];
-		buff_i2c_rx[0] = 0xff;
-		ptr_i2c_rx_buff = 0 ;
+		Clear_Rx();
 	}
-	else if ((buff_i2c_rx[0] == 0x03) && (ptr_i2c_rx_buff == 3)) // read EEPROM
+	else if ((buff_i2c_rx[0] == 0x02) && (ptr_i2c_rx_buff >= 3)) // 02: set height(number)
 	{
+		height = (buff_i2c_rx[1] << 8) | buff_i2c_rx[2];
+		utoa(height, height_str);
+		buff_i2c_tx[0] = height_str[2];
+		buff_i2c_tx[1] = height_str[1];
+		buff_i2c_tx[2] = height_str[0];
+		Clear_Rx();
+	}	
+	else if ((buff_i2c_rx[0] == 0x03) && (ptr_i2c_rx_buff >= 3)) // read EEPROM
+	{
+		
 		b_ee_data_ready = 0;
 		n = buff_i2c_rx[1];
-		ee_addr = buff_i2c_rx[2];
-		
-		for (i = 0; i < 16; i++)
-		{
-			buff_i2c_tx[i] = 0xFF;			
-		}	
-			
+		ee_addr = buff_i2c_rx[2];	
+				
 		for (i = 0; i < n; i++)
 		{
-			buff_i2c_tx[i] = EE_Read(ee_addr + i);			
+			buff_i2c_tx[i] = EE_Read_Byte(i);			
 		}
-		b_ee_data_ready = 1;		
-		buff_i2c_rx[0] = 0xff;
-		ptr_i2c_rx_buff = 0 ;			
+		b_ee_data_ready = 1;	
+		
+		Clear_Rx();			
 	}
-	else if ((buff_i2c_rx[0] == 0x04) && (ptr_i2c_rx_buff == 3)) // write EEPROM
+	else if ((buff_i2c_rx[0] == 0x04) && (ptr_i2c_rx_buff >= 3)) // write EEPROM byte
+	{	
+		ee_addr = buff_i2c_rx[1];
+		ee_data = buff_i2c_rx[2];
+		EE_Write_Byte(ee_addr, ee_data);
+
+		Clear_Rx();			
+	}		
+	else if ((buff_i2c_rx[0] == 0x05) && (ptr_i2c_rx_buff >= (buff_i2c_rx[1] + 3))) // write EEPROM bytes
+	{	
+		n = buff_i2c_rx[1];
+		ee_addr = buff_i2c_rx[2];
+		EE_Write(n, ee_addr, buff_i2c_rx + 3);
+
+		Clear_Rx();		
+	}
+	else if ((buff_i2c_rx[0] == 0x06) && (ptr_i2c_rx_buff >= 1)) // read key status
+	{					
+		buff_i2c_tx[0] = key_stat;
+		Clear_Rx();
+	}	
+	else if ((buff_i2c_rx[0] == 0x20) && (ptr_i2c_rx_buff >= 2)) // SET LED Current Level
+	{
+		Led_Current_Set(buff_i2c_rx[1]);
+		Clear_Rx();			
+	}
+	else if ((buff_i2c_rx[0] == 0x21) && (ptr_i2c_rx_buff >= 5)) // SET LED flash period and duty
+	{
+		led_duty= (buff_i2c_rx[1] << 8) | buff_i2c_rx[2];
+		led_period= (buff_i2c_rx[3] << 8) | buff_i2c_rx[4];
+		Clear_Rx();			
+	}				
+	else if ((buff_i2c_rx[0] == 0x10) && (ptr_i2c_rx_buff >= 3)) // read test buffer
+	{
+		n = buff_i2c_rx[1];
+		ee_addr = buff_i2c_rx[2];	
+//		if ((n + ee_addr) > 8)
+//			n = 8 - ee_addr;
+				
+		for (i = 0; i < n; i++)
+		{
+			buff_i2c_tx[i] = buff_test[ee_addr + i];			
+		}	
+		
+		Clear_Rx();			
+	}
+	else if ((buff_i2c_rx[0] == 0x11) && (ptr_i2c_rx_buff >= 3)) // write test buffer
 	{
 		ee_addr = buff_i2c_rx[1];
 		ee_data = buff_i2c_rx[2];
-		EE_Write(ee_addr, ee_data);		
-		buff_i2c_rx[0] = 0xff;
-		ptr_i2c_rx_buff = 0 ;			
+		buff_test[ee_addr] = ee_data;
+
+		Clear_Rx();			
 	}	
-//	else if ((buff_i2c_rx[0] == 0x06) && (ptr_i2c_rx_buff == 1)) // read EEPROM status
+//	else if ((buff_i2c_rx[0] == 0xF0) && (ptr_i2c_rx_buff >= 1)) // write test buffer
 //	{
-//		buff_i2c_tx[0] = b_ee_data_ready;		
+//		Power_On_Reset();
+//		Clear_Rx();			
+//	}		
+//	else if ((buff_i2c_rx[0] == 0x06) && (ptr_i2c_rx_buff == 1)) // Read EEPROM status
+//	{
+//		//buff_i2c_tx[0] = b_ee_data_ready;		
 //		buff_i2c_rx[0] = 0xff;
-//		ptr_i2c_rx_buff = 0 ;			
+//		ptr_i2c_rx_buff = 0 ;	
+//		GCC_NOP();		
 //	}	
+	else
+	{
+		FeedWatchDog();
+	}
 }
 
 void Init_System(void)
@@ -247,12 +328,15 @@ void Init_System(void)
 	_iica = I2C_ADDR;
 //	_iichtx = 0;  // receive mode
 //	_iictxak = 0; // send ack
-	_i2ctoc = 0b10111111;  // time out is enabled
+//	_i2ctoc = 0b10111111;  // time out is enabled
 	
 	_iicf = 0;
 	_iice = 1; // I2C interrupt
 	
 /* Time base 
+Bit    7    6    5     4   3     2    1    0
+Name TBON TBCK TB11 TB10 LXTLP TB02 TB01 TB00
+TB0==
 000: 256/fTB
 001: 512/fTB
 010: 1024/fTB
@@ -261,8 +345,13 @@ void Init_System(void)
 101: 8192/fTB
 110: 16384/fTB
 111: 32768/fTB 
+TB1==
+00: 4096/fTB
+01: 8192/fTB
+10: 16384/fTB
+11: 32768/fTB
 */
-	_tbc = 0b11000001; //fsys(12MHz)/4, tb1=4096/ftb = 732Hz, tb0=512/ftb==5.9kHz 
+	_tbc = 0b11110110; //fsys(12MHz)/4, tb1=32768/ftb , tb0=16384/ftb 
 	_tb0f = 0;
 	_tb0e = 1;
 	_tb1f = 0;
@@ -283,50 +372,6 @@ void Init_Vars(void)
 	}
 }
 
-
-
-uint8_t EE_Write(uint8_t addr, uint8_t data)  // please add 1ms delay after next write
-{
-	EMI_OFF();
-	_eea = addr;
-	_eed = data;
-	_mp1 = 0x40; //EEC control register is located at address 40H in Bank 1
-	_bp = 0x01;
-
-	_iar1 |= 0x08; //WREN
-	_iar1 |= 0x04; //WR
-
-	while ((_iar1 & 0x04) == 0x04) // check if write cycle finished
-	{
-		FeedWatchDog();
-	}
-	_iar1 = 0;
-	_bp = 0;
-	
-	EMI_ON();
-	return 1;	
-}
-
-uint8_t EE_Read(uint8_t addr)
-{
-	EMI_OFF();	
-	_eea = addr;
-	_mp1 = 0x40; //EEC control register is located at address 40H in Bank 1
-	_bp = 0x01;
-
-	_iar1 |= 0x02; //RDEN
-	_iar1 |= 0x01; //RD
-	
-	while ((_iar1 & 0x01) == 0x01) // check if write cycle finished
-	{
-		FeedWatchDog();
-	}
-	_iar1 = 0;
-	_bp = 0;
-	
-	EMI_ON();
-	return _eed;
-}	
 
 void Led_Current_Set(uint8_t level)
 {
@@ -351,6 +396,11 @@ void Led_Current_Set(uint8_t level)
 		_sledc1 = 0x00;		
 	}		
 }
+
+/* led: B7  B6 B5 B4 B3 B2 B1 B0
+        =========================
+        DOT SG SF SE SD SC SB SA 
+*/
 void Digit_Set(uint8_t led)
 {
 	SA = (led >> 0) & 0x01;
@@ -424,6 +474,12 @@ uint8_t Key_Scan(void)
 {
 	return ~(0x80 | (KS7 << 6) | (KS6 << 5) | (KS5 << 4) | (KS4 << 3) | (KS3 << 2) | (KS2 << 1) | (KS1 << 0));
 }
+
+void Clear_Rx(void)
+{
+	buff_i2c_rx[0] = 0xff;
+	ptr_i2c_rx_buff = 0 ;
+}			
 /*---------------------------------------------------------------
 	Interrupt Subroutines
 -----------------------------------------------------------------
@@ -495,10 +551,11 @@ DEFINE_ISR(Int_I2C, 0x28)
 	{
 		if (I2C_ADDR_MATCH == 1)	// address match
 		{
+			ptr_i2c_tx_buff = 0;
 			if (I2C_READ == 1) // master request data
 			{
 				I2C_TRANSMITTER = 1;
-				ptr_i2c_tx_buff = 0;
+				//ptr_i2c_tx_buff = 0;
 				I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff];
 				ptr_i2c_tx_buff++;			
 			}	
@@ -506,7 +563,7 @@ DEFINE_ISR(Int_I2C, 0x28)
 			{
 				I2C_TRANSMITTER = 0;
 				I2C_TX_NOACK = 0;				
-				ptr_i2c_rx_buff = 0;
+				//ptr_i2c_rx_buff = 0;
 				u8temp = I2C_DATA; //dummy read
 			}
 		}
@@ -541,4 +598,9 @@ DEFINE_ISR(Int_I2C, 0x28)
 
 	I2C_INT_FLAG = 0;	
 	EMI_ON();
+}
+
+void Power_On_Reset(void)
+{
+	_lvrc = 0;	
 }

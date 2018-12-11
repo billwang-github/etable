@@ -1,0 +1,51 @@
+(ExpressProject "UI"
+  (ProjectVersion "19981106")
+  (ProjectType "PCB")
+  (Folder "Design Resources"
+    (Folder "Library")
+    (NoModify)
+    (File ".\ui.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x"))
+  (Folder "Outputs")
+  (Folder "Referenced Projects")
+  (PartMRUSelector
+    (BUZZER
+      (FullPartName "BUZZER.Normal")
+      (LibraryName "D:\WORK\EDA\LIB_ORCAD\MYLIB.OLB")
+      (DeviceIndex "0"))
+    ("R SMD"
+      (FullPartName "R SMD.Normal")
+      (LibraryName "D:\WORK\EDA\LIB_ORCAD\MYLIB.OLB")
+      (DeviceIndex "0"))
+    (GND
+      (LibraryName
+         "C:\CADENCE\CADENCE_SPB_16.6-2015\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (NPN2
+      (FullPartName "NPN2.Normal")
+      (LibraryName "D:\WORK\EDA\LIB_ORCAD\MYLIB.OLB")
+      (DeviceIndex "0"))
+    ("CAP MLCC"
+      (FullPartName "CAP MLCC.Normal")
+      (LibraryName "D:\WORK\EDA\LIB_ORCAD\MYLIB.OLB")
+      (DeviceIndex "0"))
+    (HT66F318-24
+      (FullPartName "HT66F318-24.Normal")
+      (LibraryName "D:\WORK\EDA\LIB_ORCAD\MYLIB.OLB")
+      (DeviceIndex "0")))
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources" "D:\WORK\PROJECT\Github\etable\Hardware\ui.dsn")
+      (Path "Design Resources" "D:\WORK\PROJECT\Github\etable\Hardware\ui.dsn"
+         "SCHEMATIC1")
+      (Select "Design Resources"
+         "D:\WORK\PROJECT\Github\etable\Hardware\ui.dsn" "SCHEMATIC1" "MCU"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 2 3 -1 -1 -8 -30 0 200 0 478"))
+      (Tab 0))))
