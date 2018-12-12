@@ -23,7 +23,7 @@ uint8_t my_strcpy(uint8_t dest[], const char source[])
 	while (source[i] != '\0')
 	{
 		dest[i] = (uint8_t)source[i];
-		if (i > 32)
+		if (i > 16)
 			break;
 		else
 			i++;
@@ -166,14 +166,15 @@ uint8_t EE_Write_Byte(uint8_t addr, uint8_t data)  // please add 5ms delay after
 		i--;
 		if (i == 0)
 		{
-			_iar1 = 0;
-			_bp = 0;			
-			return 0;
+			break;
 		}
 	}
 	_iar1 = 0;
 	_bp = 0;
-	return 1;	
+	if (i == 0)
+		return 0;
+	else
+		return 1;	
 }
 
 void EE_Write(uint8_t n, uint8_t addr, uint8_t *buff)
@@ -181,8 +182,8 @@ void EE_Write(uint8_t n, uint8_t addr, uint8_t *buff)
 	uint8_t i;
 	for (i = 0; i < n; i++)
 	{
-		EE_Write_Byte(addr + i, buff[i]);	
-		//GCC_DELAY(256);
+		if (EE_Write_Byte(addr + i, buff[i]) == 0)
+			break;	
 	}
 }
 

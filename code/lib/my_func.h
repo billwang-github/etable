@@ -1,6 +1,7 @@
 #ifndef _My_FUNC_H_
 #define _MY_FUNC_H_
 #include "HT66F319.h"
+//#include "HT66F318.h"
 
 #define uint8_t unsigned char
 #define uint16_t unsigned short

@@ -1,7 +1,7 @@
 /*	Panel with 3 digits 7-segment, 6 function key, EEPROM R/W with UART interfac
 **	Written by Bill Wang@GMT 2018/10/23
 */
-#include "HT66F319.h"
+//#include "HT66F319.h"
 //#include "HT66F318.h"
 #include "my_func.h"
 
@@ -30,6 +30,8 @@
 #define KS6	_pb6
 #define KS7	_pb5
 
+#define BUZZER _pa6
+
 #define SDA _pc5
 #define SCL _pc6
 #define I2C_DATA _iicd
@@ -51,7 +53,7 @@ const uint8_t seg_7_table[16] ={0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 
 const char date_code[9] ="18120700";
 
 volatile uint8_t com =0x01;
-volatile uint16_t led_period = 900, led_duty = 450;//1sec=1953
+volatile uint16_t led_period = 900, led_duty = 900;//1sec=1953
 
 uint16_t height = 000;
 uint8_t height_str[3] = "FFF"; // height_str[2]:MSB
@@ -320,12 +322,18 @@ void Init_System(void)
 
 /* slave I2C */
 	_iicen = 1; // enable I2C
-	SDA = 1;
+	_i2cdbnc0 = 1; //debounce
+	_i2cdbnc1 = 1;
+	_pcc5 = 1; //input
+	_pcc6 = 1;
+	_pcps3 = 1; // max. I/O driving current 
+	_pcps2 = 1;
+	SDA = 1;  // set High level
 	SCL = 1;
 	_pcpu5 = 1; //I2C bus pull high
 	_pcpu6 = 1;
 
-	_iica = I2C_ADDR;
+	_iica = I2C_ADDR; //set slave address
 //	_iichtx = 0;  // receive mode
 //	_iictxak = 0; // send ack
 //	_i2ctoc = 0b10111111;  // time out is enabled
@@ -377,23 +385,55 @@ void Led_Current_Set(uint8_t level)
 {
 	if (level == 1) //7mA
 	{
-		_sledc0 =0b01010101;	
-		_sledc1 =0b01010101;	
+		_pcps1 = 0;
+		_pcps0 = 1;
+		_paps3 = 0;
+		_paps2 = 1;
+		_pbps3 = 0;
+		_pbps2 = 1;
+		_pbps1 = 0;
+		_pbps0 = 1;
+		//_sledc0 =0b01010101;	
+		//_sledc1 =0b01010101;	
 	}
 	else if (level == 2) // 10mA
 	{
-		_sledc0 =0b10101010;	
-		_sledc1 =0b10101010;	
+		_pcps1 = 1;
+		_pcps0 = 0;
+		_paps3 = 1;
+		_paps2 = 0;
+		_pbps3 = 1;
+		_pbps2 = 0;
+		_pbps1 = 1;
+		_pbps0 = 0;		
+		//_sledc0 =0b10101010;	
+		//_sledc1 =0b10101010;	
 	}	
 	else if (level == 3) // 22mA
 	{
-		_sledc0 =0b11111111;	
-		_sledc1 =0b11111111;	
+		_pcps1 = 1;
+		_pcps0 = 1;
+		_paps3 = 1;
+		_paps2 = 1;
+		_pbps3 = 1;
+		_pbps2 = 1;
+		_pbps1 = 1;
+		_pbps0 = 1;			
+		//_sledc0 =0b11111111;	
+		//_sledc1 =0b11111111;	
 	}
 	else	// 4mA
 	{
-		_sledc0	= 0x00;
-		_sledc1 = 0x00;		
+		_pcps1 = 0;
+		_pcps0 = 0;
+		_paps3 = 0;
+		_paps2 = 0;
+		_pbps3 = 0;
+		_pbps2 = 0;
+		_pbps1 = 0;
+		_pbps0 = 0;			
+		//_sledc0	= 0x00;
+		//_sledc1 = 0x00;		
 	}		
 }
 
@@ -410,7 +450,7 @@ void Digit_Set(uint8_t led)
 	SE = (led >> 4) & 0x01;
 	SF = (led >> 5) & 0x01;
 	SG = (led >> 6) & 0x01;
-	DOT = (led >> 7) & 0x01;	
+	//DOT = (led >> 7) & 0x01;	
 }
 
 void Com_Sel(uint8_t sel)
@@ -484,7 +524,7 @@ void Clear_Rx(void)
 	Interrupt Subroutines
 -----------------------------------------------------------------
 */
-DEFINE_ISR(Int_Tb0, 0x1C) //11.718kHz 
+DEFINE_ISR(Int_Tb0, 0x1C) //
 {			
 	
 	FeedWatchDog();
@@ -492,11 +532,22 @@ DEFINE_ISR(Int_Tb0, 0x1C) //11.718kHz
 	_tb0f = 0;
 }
 
-DEFINE_ISR(Int_Tb1, 0x20) //732Hz
+DEFINE_ISR(Int_Tb1, 0x20) //
 {		
+	static uint8_t cnt = 0;
 	FeedWatchDog();	
 /* Read Key */	
 	key_stat = Key_Scan();	
+	
+	if (cnt++ > 10)
+	{
+		cnt = 0;
+		
+		if (BUZZER == 1)
+			BUZZER = 0;
+		else
+			BUZZER = 1;
+	}
 			
 	_tb1f = 0;
 }

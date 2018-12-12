@@ -5,10 +5,12 @@
 #define SERIAL_BAUD 9600
 
 byte c, payload[32];
-int i;
-int height = 40;
-byte u8temp = 0x00;
+int i,j;
+
 int err_flag = 0, err_cnt = 0;;
+
+unsigned int height = 0;
+byte u8temp = 0x00;  
 
 void setup()
 {
@@ -38,15 +40,11 @@ void setup()
   Set_Led_Current(3);
 
   // led flash duty
-  Set_Led_Duty(1000,1000);
+  Set_Led_Duty(1000, 1000);
 
   // Set Height string, master write
-  payload[0] = 0x01;
-  payload[1] = '1';
-  payload[2] = '2';
-  payload[3] = '3';
-  Write_I2c_Bytes(4, payload);
-  delay(2000);      
+  Set_Display("456");
+  delay(2000);
 }
 
 
@@ -55,9 +53,9 @@ void loop()
   u8temp = ~u8temp;
   Serial.println();
   Serial.println("====================================");
-  Serial.print("Write EEPROM bytes Test...");
+  Serial.print("Write test buffer...");
   Serial.println(u8temp);
-  for (i = 0; i < 8; i++) 
+  for (i = 0; i < 8; i++)
   {
     payload[0] = 0x11;      //command
     payload[1] = i;         // start address
@@ -65,27 +63,17 @@ void loop()
     Write_I2c_Bytes(3, payload);
   }
 
-//  payload[0] = 0x05;
-//  payload[1] = 8; // number to write
-//  payload[2] = 0; // start address
-//  for (i = 0; i < 8; i++) //Read_EE_Bytes
-//  {
-//    payload[3 + i] = u8temp;
-//  }
-//  Write_I2c_Bytes(11, payload);
-//  delay(100);
-  
-
   Serial.println();
   Serial.println("====================================");
-  Serial.println("Read EEPROM....");
-  // Read EEPROM Buffer buffer, master read
-  payload[0] = 0x10; // 
+  Serial.println("Read test buffer....");
+  // Read test Buffer buffer, master read
+  payload[0] = 0x10; //
   payload[1] = 8; // number
   payload[2] = 0; // address
   Write_I2c_Bytes(3, payload);
   //delay(100);
   Read_I2c_Bytes(8, payload);
+  // check error
   err_flag = 0;
   for (i = 0; i < 8; i++)
   {
@@ -98,22 +86,12 @@ void loop()
     //Serial.println(err_cnt);
     //Print_Buff(8, 'H', payload); Serial.println();
   }
-  Serial.println(err_cnt);Print_Buff(8, 'H', payload); Serial.println();
-  delay(500);
-  
-  //  Serial.println();
-  //  Serial.println("====================================");
-  //  Serial.println("Write Display Test 2...");
-  //  payload[0] = 0x02;
-  //  payload[1] = height >> 8;
-  //  payload[2] = height & 0xFF;
-  //  Write_I2c_Bytes(3, payload);
-  //
-  //  if (height >= 100)
-  //    height = 40;
-  //   else
-  //    height++;
-  //  delay(1000);
+  Serial.print("err ="); Serial.println(err_cnt); 
+  Print_Buff(8, 'H', payload); Serial.println();
+  //Serial.write(payload, 8); Serial.println();
+
+  Set_Height(height++);
+  delay(200);
 }
 
 
@@ -139,7 +117,7 @@ void Read_I2c_Bytes(int n, unsigned char *buff_data)
     i++;
     if (i >= n)
       break;
-  }  
+  }
   //delay(10);
 }
 
@@ -168,7 +146,7 @@ void Write_I2c_Bytes(int n , unsigned char *buff_data)
   Wire.beginTransmission(SLAVE_ADDRESS);
   Wire.write(buff_data, n );
   Wire.endTransmission();
-  delay(20);
+  //delay(20);
 }
 
 void Set_Led_Current(unsigned char i)
@@ -177,11 +155,11 @@ void Set_Led_Current(unsigned char i)
   buff_tx[0] = 0x20;
   buff_tx[1] = i;
   Write_I2c_Bytes(2, buff_tx);
-}  
+}
 
 void Set_Led_Duty(unsigned int duty, unsigned int period)
 {
-  unsigned char buff_tx[5];  
+  unsigned char buff_tx[5];
   buff_tx[0] = 0x21;
   buff_tx[1] = (duty >> 8) & 0xFF;
   buff_tx[2] = duty & 0xFF;
@@ -189,4 +167,24 @@ void Set_Led_Duty(unsigned int duty, unsigned int period)
   buff_tx[4] = period & 0xFF;
   Write_I2c_Bytes(5, buff_tx);
 }
-  
+
+void Set_Height(unsigned int data)
+{
+  unsigned char buff_tx[3];
+
+  buff_tx[0] = 0x02;
+  buff_tx[1] = (data >> 8) & 0xFF;
+  buff_tx[2] = data & 0xFF;
+  Write_I2c_Bytes(3, buff_tx);  
+}
+
+void Set_Display(unsigned char data[])
+{
+  unsigned char buff_tx[4];
+
+  buff_tx[0] = 0x01;
+  buff_tx[1] = data[0];
+  buff_tx[2] = data[1];
+  buff_tx[3] = data[2];
+  Write_I2c_Bytes(4, buff_tx);
+}
