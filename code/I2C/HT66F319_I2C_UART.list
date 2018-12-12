@@ -55,73 +55,73 @@
 				;54	
 				;55	volatile uint8_t com =0x01;
 				;56	volatile uint16_t led_period = 900, led_duty = 900;//1sec=1953
-0494	0384	addm    a, BP
-0495	0384	addm    a, BP
-0496	0001	clr     wdt
-0497	0000	nop
-0498	0030	dc	00030H
-0499	008D	mov     INTEG, a
-049A	0000	nop
-				L049B:
-049B	5F71	clr     num
-049C	5F72	clr     n
-049D	0F10	mov     a, 10H
-049E	40F4	mov     i[1], a
-				L049F:
-049F	340A	clr     C
-04A0	5AED	rlc     level
-04A1	5AEE	rlc     addr
-04A2	5AF1	rlc     num
-04A3	5AF2	rlc     n
-04A4	4771	mov     a, num
-04A5	426F	sub     a, addr
-04A6	4772	mov     a, n
-04A7	5270	sbc     a, buff
-04A8	380A	snz     C
-04A9	2CAF	jmp     L04AF
-04AA	40F2	mov     n, a
-04AB	4771	mov     a, num
-04AC	426F	sub     a, addr
-04AD	40F1	mov     num, a
-04AE	54ED	inc     level
-				L04AF:
-04AF	57F4	sdz     i[1]
-04B0	2C9F	jmp     L049F
-04B1	7873	snz     i.0
-04B2	2CB8	jmp     L04B8
-04B3	41F1	cpl     num
-04B4	41F2	cpl     n
-04B5	54F1	inc     num
-04B6	3D0A	sz      Z
-04B7	54F2	inc     n
-				L04B8:
-04B8	78F3	snz     i.1
+049B	0384	addm    a, BP
+049C	0384	addm    a, BP
+049D	0001	clr     wdt
+049E	0000	nop
+049F	0030	dc	00030H
+04A0	008D	mov     INTEG, a
+04A1	0000	nop
+				L04A2:
+04A2	5F5D	clr     num
+04A3	5F5E	clr     n
+04A4	0F10	mov     a, 10H
+04A5	40E0	mov     i[1], a
+				L04A6:
+04A6	340A	clr     C
+04A7	5AD9	rlc     level
+04A8	5ADA	rlc     addr
+04A9	5ADD	rlc     num
+04AA	5ADE	rlc     n
+04AB	475D	mov     a, num
+04AC	425B	sub     a, addr
+04AD	475E	mov     a, n
+04AE	525C	sbc     a, buff
+04AF	380A	snz     C
+04B0	2CB6	jmp     L04B6
+04B1	40DE	mov     n, a
+04B2	475D	mov     a, num
+04B3	425B	sub     a, addr
+04B4	40DD	mov     num, a
+04B5	54D9	inc     level
+				L04B6:
+04B6	57E0	sdz     i[1]
+04B7	2CA6	jmp     L04A6
+04B8	785F	snz     i.0
 04B9	2CBF	jmp     L04BF
-04BA	41ED	cpl     level
-04BB	41EE	cpl     addr
-04BC	54ED	inc     level
+04BA	41DD	cpl     num
+04BB	41DE	cpl     n
+04BC	54DD	inc     num
 04BD	3D0A	sz      Z
-04BE	54EE	inc     addr
+04BE	54DE	inc     n
 				L04BF:
-04BF	0003	ret
-04C0	1483	inc     MP1
-				L04C1:
-04C1	3F81	sz      MP0.7
-04C2	2CC7	jmp     L04C7
-04C3	0701	mov     a, MP0
-04C4	0084	mov     BP, a
-04C5	0702	mov     a, __iar1[0]
+04BF	78DF	snz     i.1
+04C0	2CC6	jmp     L04C6
+04C1	41D9	cpl     level
+04C2	41DA	cpl     addr
+04C3	54D9	inc     level
+04C4	3D0A	sz      Z
+04C5	54DA	inc     addr
+				L04C6:
 04C6	0003	ret
-				L04C7:
-04C7	1B01	rrca    MP0
-04C8	0E3F	and     a, 3FH
-04C9	0089	mov     TBHP, a
-04CA	1B03	rrca    MP1
-04CB	0087	mov     TBLP, a
-04CC	1D05	tabrd   ACC
-04CD	3C0A	sz      C
-04CE	0708	mov     a, TBLH
-04CF	0003	ret
+04C7	1483	inc     MP1
+				L04C8:
+04C8	3F81	sz      MP0.7
+04C9	2CCE	jmp     L04CE
+04CA	0701	mov     a, MP0
+04CB	0084	mov     BP, a
+04CC	0702	mov     a, __iar1[0]
+04CD	0003	ret
+				L04CE:
+04CE	1B01	rrca    MP0
+04CF	0E3F	and     a, 3FH
+04D0	0089	mov     TBHP, a
+04D1	1B03	rrca    MP1
+04D2	0087	mov     TBLP, a
+04D3	1D05	tabrd   ACC
+04D4	3C0A	sz      C
+04D5	0708	mov     a, TBLH
+04D6	0003	ret
 				L0E4F:
 				org	0e4fh
 0E4F	0000	nop
@@ -169,11 +169,11 @@
 000B	3F00	sz      [00H].6
 000C	5B06	rrca    height[0]
 000D	664F	call    E4FH
-000E	7D6D	sz      level.2
+000E	7D6D	sz      ee_addr[3].2
 000F	7F07	sz      height[1].6
-0010	776F	clr     addr.6
+0010	776F	clr     ee_addr[5].6
 0011	397C	snz     __sledc1[42].2
-0012	795E	snz     r12c.2
+0012	795E	snz     n.2
 0013	0071	dc	00071H
 				startupend3:
 				@start .SECTION 'CODE'
@@ -258,8 +258,8 @@
 				_Command_Parse:
 				_Command_Parse:
 02E7	472D	mov     a, buff_i2c_rx[0]
-02E8	40FF	mov     ee_addr[1], a
-02E9	50FF	sz      ee_addr[1]
+02E8	40EB	mov     ee_addr[1], a
+02E9	50EB	sz      ee_addr[1]
 02EA	2AF9	jmp     _L31
 02EB	5081	sz      ptr_i2c_rx_buff[0]
 02EC	2AEE	jmp     _LI7
@@ -268,13 +268,13 @@
 				;152			my_strcpy1(8, buff_i2c_tx, date_code);
 				_LI7:
 02EE	0F0E	mov     a, EH
-02EF	40EF	mov     addr, a
+02EF	40DB	mov     addr, a
 02F0	0F80	mov     a, 80H
-02F1	40F0	mov     buff, a
+02F1	40DC	mov     buff, a
 02F2	0F9A	mov     a, 9AH
-02F3	40ED	mov     level, a
+02F3	40D9	mov     level, a
 02F4	0F00	mov     a, 0H
-02F5	40EE	mov     addr, a
+02F5	40DA	mov     addr, a
 02F6	0F08	mov     a, 8H
 02F7	207D	call    _my_strcpy1
 02F8	2BEE	jmp     _L53
@@ -282,7 +282,7 @@
 				;154		}	
 				;155		else if ((buff_i2c_rx[0] == 0x01) && (ptr_i2c_rx_buff >= 4)) // 01: set height(string)
 				_L31:
-02F9	577F	sdza    ee_addr[1]
+02F9	576B	sdza    ee_addr[1]
 02FA	2B06	jmp     _L34
 02FB	0F03	mov     a, 3H
 02FC	4201	sub     a, ptr_i2c_rx_buff[0]
@@ -303,7 +303,7 @@
 				;161		}
 				;162		else if ((buff_i2c_rx[0] == 0x02) && (ptr_i2c_rx_buff >= 3)) // 02: set height(number)
 				_L34:
-0306	477F	mov     a, ee_addr[1]
+0306	476B	mov     a, ee_addr[1]
 0307	0A02	sub     a, 2H
 0308	390A	snz     Z
 0309	2B26	jmp     _L35
@@ -323,13 +323,13 @@
 0315	4087	mov     height[1], a
 				;165			utoa(height, height_str);
 0316	0F83	mov     a, 83H
-0317	40F7	mov     str, a
+0317	40E3	mov     str, a
 0318	0F00	mov     a, 0H
-0319	40F8	mov     str[1], a
+0319	40E4	mov     str[1], a
 031A	473F	mov     a, rb
-031B	40F5	mov     n, a
+031B	40E1	mov     n, a
 031C	4740	mov     a, rc
-031D	40F6	mov     n[1], a
+031D	40E2	mov     n[1], a
 031E	20A2	call    _utoa
 				;166			buff_i2c_tx[0] = height_str[2];
 031F	4705	mov     a, height_str[2]
@@ -345,7 +345,7 @@
 				;170		}	
 				;171		else if ((buff_i2c_rx[0] == 0x03) && (ptr_i2c_rx_buff >= 3)) // read EEPROM
 				_L35:
-0326	477F	mov     a, ee_addr[1]
+0326	476B	mov     a, ee_addr[1]
 0327	0A03	sub     a, 3H
 0328	390A	snz     Z
 0329	2B4D	jmp     _L37
@@ -359,31 +359,31 @@
 032E	743D	clr     b_ee_data_ready[0].0
 				;175			n = buff_i2c_rx[1];
 032F	472E	mov     a, buff_i2c_rx[1]
-0330	40FB	mov     n[0], a
+0330	40E7	mov     n[0], a
 				;176			ee_addr = buff_i2c_rx[2];	
 0331	472F	mov     a, buff_i2c_rx[2]
-0332	40FE	mov     ee_addr[0], a
+0332	40EA	mov     ee_addr[0], a
 				;177					
 				;178			for (i = 0; i < n; i++)
-0333	5F7C	clr     i[0]
+0333	5F68	clr     i[0]
 				_L39:
-0334	477C	mov     a, i[0]
-0335	427B	sub     a, n[0]
+0334	4768	mov     a, i[0]
+0335	4267	sub     a, n[0]
 0336	3C0A	sz      C
 0337	2B4B	jmp     _L54
-0349	54FC	inc     i[0]
+0349	54E8	inc     i[0]
 034A	2B34	jmp     _L39
 				;179			{
 				;180				buff_i2c_tx[i] = EE_Read_Byte(i);			
-0338	477C	mov     a, i[0]
-0339	40FF	mov     ee_addr[1], a
-033A	477C	mov     a, i[0]
+0338	4768	mov     a, i[0]
+0339	40EB	mov     ee_addr[1], a
+033A	4768	mov     a, i[0]
 033B	40BE	mov     ra, a
 033C	473E	mov     a, ra
 033D	2140	call    _EE_Read_Byte
 033E	40BE	mov     ra, a
 033F	0F9A	mov     a, 9AH
-0340	437F	add     a, ee_addr[1]
+0340	436B	add     a, ee_addr[1]
 0341	0083	mov     MP1, a
 0342	0F00	mov     a, 0H
 0343	1F01	clr     MP0
@@ -402,7 +402,7 @@
 				;185		}
 				;186		else if ((buff_i2c_rx[0] == 0x04) && (ptr_i2c_rx_buff >= 3)) // write EEPROM byte
 				_L37:
-034D	477F	mov     a, ee_addr[1]
+034D	476B	mov     a, ee_addr[1]
 034E	0A04	sub     a, 4H
 034F	390A	snz     Z
 0350	2B60	jmp     _L32
@@ -413,15 +413,15 @@
 				;187		{	
 				;188			ee_addr = buff_i2c_rx[1];
 0355	472E	mov     a, buff_i2c_rx[1]
-0356	40FE	mov     ee_addr[0], a
+0356	40EA	mov     ee_addr[0], a
 				;189			ee_data = buff_i2c_rx[2];
 0357	472F	mov     a, buff_i2c_rx[2]
-0358	40FD	mov     ee_data[0], a
+0358	40E9	mov     ee_data[0], a
 				;190			EE_Write_Byte(ee_addr, ee_data);
-0359	477E	mov     a, ee_addr[0]
+0359	476A	mov     a, ee_addr[0]
 035A	40BE	mov     ra, a
-035B	477D	mov     a, ee_data[0]
-035C	40ED	mov     level, a
+035B	4769	mov     a, ee_data[0]
+035C	40D9	mov     level, a
 035D	473E	mov     a, ra
 035E	20FA	call    _EE_Write_Byte
 035F	2BEE	jmp     _L53
@@ -430,7 +430,7 @@
 				;193		}		
 				;194		else if ((buff_i2c_rx[0] == 0x05) && (ptr_i2c_rx_buff >= (buff_i2c_rx[1] + 3))) // write EEPROM bytes
 				_L32:
-0360	477F	mov     a, ee_addr[1]
+0360	476B	mov     a, ee_addr[1]
 0361	0A05	sub     a, 5H
 0362	390A	snz     Z
 0363	2B86	jmp     _L42
@@ -456,19 +456,19 @@
 				;195		{	
 				;196			n = buff_i2c_rx[1];
 0377	473E	mov     a, ra
-0378	40FB	mov     n[0], a
+0378	40E7	mov     n[0], a
 				;197			ee_addr = buff_i2c_rx[2];
 0379	472F	mov     a, buff_i2c_rx[2]
-037A	40FE	mov     ee_addr[0], a
+037A	40EA	mov     ee_addr[0], a
 				;198			EE_Write(n, ee_addr, buff_i2c_rx + 3);
-037B	477E	mov     a, ee_addr[0]
-037C	40EF	mov     addr, a
-037D	477B	mov     a, n[0]
+037B	476A	mov     a, ee_addr[0]
+037C	40DB	mov     addr, a
+037D	4767	mov     a, n[0]
 037E	40BE	mov     ra, a
 037F	0FB0	mov     a, B0H
-0380	40F0	mov     buff, a
+0380	40DC	mov     buff, a
 0381	0F00	mov     a, 0H
-0382	40F1	mov     num, a
+0382	40DD	mov     num, a
 0383	473E	mov     a, ra
 0384	2126	call    _EE_Write
 0385	2BEE	jmp     _L53
@@ -477,7 +477,7 @@
 				;201		}
 				;202		else if ((buff_i2c_rx[0] == 0x06) && (ptr_i2c_rx_buff >= 1)) // read key status
 				_L42:
-0386	477F	mov     a, ee_addr[1]
+0386	476B	mov     a, ee_addr[1]
 0387	0A06	sub     a, 6H
 0388	390A	snz     Z
 0389	2B90	jmp     _L36
@@ -494,7 +494,7 @@
 				;206		}	
 				;207		else if ((buff_i2c_rx[0] == 0x20) && (ptr_i2c_rx_buff >= 2)) // SET LED Current Level
 				_L36:
-0390	477F	mov     a, ee_addr[1]
+0390	476B	mov     a, ee_addr[1]
 0391	0A20	sub     a, 20H
 0392	390A	snz     Z
 0393	2B9B	jmp     _L38
@@ -511,7 +511,7 @@
 				;211		}
 				;212		else if ((buff_i2c_rx[0] == 0x21) && (ptr_i2c_rx_buff >= 5)) // SET LED flash period and duty
 				_L38:
-039B	477F	mov     a, ee_addr[1]
+039B	476B	mov     a, ee_addr[1]
 039C	0A21	sub     a, 21H
 039D	390A	snz     Z
 039E	2BAC	jmp     _L41
@@ -535,7 +535,7 @@
 				;217		}				
 				;218		else if ((buff_i2c_rx[0] == 0x10) && (ptr_i2c_rx_buff >= 3)) // read test buffer
 				_L41:
-03AC	477F	mov     a, ee_addr[1]
+03AC	476B	mov     a, ee_addr[1]
 03AD	0A10	sub     a, 10H
 03AE	390A	snz     Z
 03AF	2BD8	jmp     _L43
@@ -546,28 +546,28 @@
 				;219		{
 				;220			n = buff_i2c_rx[1];
 03B4	472E	mov     a, buff_i2c_rx[1]
-03B5	40FB	mov     n[0], a
+03B5	40E7	mov     n[0], a
 				;221			ee_addr = buff_i2c_rx[2];	
 03B6	472F	mov     a, buff_i2c_rx[2]
-03B7	40FE	mov     ee_addr[0], a
+03B7	40EA	mov     ee_addr[0], a
 				;222	//		if ((n + ee_addr) > 8)
 				;223	//			n = 8 - ee_addr;
 				;224					
 				;225			for (i = 0; i < n; i++)
-03B8	5F7C	clr     i[0]
+03B8	5F68	clr     i[0]
 				_L45:
-03B9	477C	mov     a, i[0]
-03BA	427B	sub     a, n[0]
+03B9	4768	mov     a, i[0]
+03BA	4267	sub     a, n[0]
 03BB	3C0A	sz      C
 03BC	2BEE	jmp     _L53
-03D6	54FC	inc     i[0]
+03D6	54E8	inc     i[0]
 03D7	2BB9	jmp     _L45
 				;226			{
 				;227				buff_i2c_tx[i] = buff_test[ee_addr + i];			
-03BD	477E	mov     a, ee_addr[0]
+03BD	476A	mov     a, ee_addr[0]
 03BE	40BF	mov     rb, a
 03BF	5F40	clr     rc
-03C0	477C	mov     a, i[0]
+03C0	4768	mov     a, i[0]
 03C1	43BF	addm    a, rb
 03C2	3C0A	sz      C
 03C3	54C0	inc     rc
@@ -577,10 +577,10 @@
 03C7	0F00	mov     a, 0H
 03C8	5340	adc     a, rc
 03C9	0081	mov     MP0, a
-03CA	24C1	call    L04C1
+03CA	24C8	call    L04C8
 03CB	40BE	mov     ra, a
 03CC	0F9A	mov     a, 9AH
-03CD	437C	add     a, i[0]
+03CD	4368	add     a, i[0]
 03CE	0083	mov     MP1, a
 03CF	0F00	mov     a, 0H
 03D0	1F01	clr     MP0
@@ -595,7 +595,7 @@
 				;231		}
 				;232		else if ((buff_i2c_rx[0] == 0x11) && (ptr_i2c_rx_buff >= 3)) // write test buffer
 				_L43:
-03D8	477F	mov     a, ee_addr[1]
+03D8	476B	mov     a, ee_addr[1]
 03D9	0A11	sub     a, 11H
 03DA	390A	snz     Z
 03DB	2BF0	jmp     _L44
@@ -606,20 +606,20 @@
 				;233		{
 				;234			ee_addr = buff_i2c_rx[1];
 03E0	472E	mov     a, buff_i2c_rx[1]
-03E1	40FE	mov     ee_addr[0], a
+03E1	40EA	mov     ee_addr[0], a
 				;235			ee_data = buff_i2c_rx[2];
 03E2	472F	mov     a, buff_i2c_rx[2]
-03E3	40FD	mov     ee_data[0], a
+03E3	40E9	mov     ee_data[0], a
 				;236			buff_test[ee_addr] = ee_data;
 03E4	0F92	mov     a, 92H
-03E5	437E	add     a, ee_addr[0]
+03E5	436A	add     a, ee_addr[0]
 03E6	0083	mov     MP1, a
 03E7	0F00	mov     a, 0H
 03E8	1F01	clr     MP0
 03E9	1381	adcm    a, MP0
 03EA	0701	mov     a, MP0
 03EB	0084	mov     BP, a
-03EC	477D	mov     a, ee_data[0]
+03EC	4769	mov     a, ee_data[0]
 03ED	0082	mov     __iar1[0], a
 				;237	
 				;238			Clear_Rx();			
@@ -762,19 +762,19 @@
 				;323	/* slave I2C */
 				;324		_iicen = 1; // enable I2C
 01D8	30C9	set     IICEN
-				;325		_i2cdbnc0 = 1;
+				;325		_i2cdbnc0 = 1; //debounce
 01D9	3149	set     I2CDBNC0
 				;326		_i2cdbnc1 = 1;
 01DA	31C9	set     I2CDBNC1
-				;327		_pcc5 = 1;
+				;327		_pcc5 = 1; //input
 01DB	32C1	set     PCC5
 				;328		_pcc6 = 1;
 01DC	3341	set     PCC6
-				;329		_pcps3 = 1; // driving current
+				;329		_pcps3 = 1; // max. I/O driving current 
 01DD	31D2	set     PCPS3
 				;330		_pcps2 = 1;
 01DE	3152	set     PCPS2
-				;331		SDA = 1;
+				;331		SDA = 1;  // set High level
 01DF	32C0	set     PC5
 				;332		SCL = 1;
 01E0	3340	set     PC6
@@ -783,7 +783,7 @@
 				;334		_pcpu6 = 1;
 01E2	3342	set     PCPU6
 				;335	
-				;336		_iica = I2C_ADDR;
+				;336		_iica = I2C_ADDR; //set slave address
 01E3	0F70	mov     a, 70H
 01E4	00CC	mov     IICA, a
 				;337	//	_iichtx = 0;  // receive mode
@@ -882,7 +882,7 @@
 				_Led_Current_Set:
 				_Led_Current_Set:
 017F	40BE	mov     ra, a
-0180	40ED	mov     level[0], a
+0180	40D9	mov     level[0], a
 				;386		if (level == 1) //7mA
 0181	573E	sdza    ra
 0182	298B	jmp     L018B
@@ -908,7 +908,7 @@
 				;398		}
 				;399		else if (level == 2) // 10mA
 				L018B:
-018B	476D	mov     a, level[0]
+018B	4759	mov     a, level[0]
 018C	0A02	sub     a, 2H
 018D	390A	snz     Z
 018E	2997	jmp     L0197
@@ -934,7 +934,7 @@
 				;411		}	
 				;412		else if (level == 3) // 22mA
 				L0197:
-0197	476D	mov     a, level[0]
+0197	4759	mov     a, level[0]
 0198	0A03	sub     a, 3H
 0199	390A	snz     Z
 019A	29A4	jmp     L01A4
@@ -995,64 +995,64 @@
 				;445	{
 				_Digit_Set:
 				_Digit_Set:
-01EE	40C5	mov     ra1c, a
-01EF	40E8	mov     led[0], a
+01EE	40C5	mov     ra00, a
+01EF	40D4	mov     led[0], a
 				;446		SA = (led >> 0) & 0x01;
 01F0	0F01	mov     a, 1H
-01F1	46C5	andm    a, ra1c
+01F1	46C5	andm    a, ra00
 01F2	3425	clr     PB0
-01F3	4745	mov     a, ra1c
+01F3	4745	mov     a, ra00
 01F4	05A5	orm     a, PB
 				;447		SB = (led >> 1) & 0x01;
-01F5	5F45	clr     ra1c
-01F6	7CE8	sz      led[0].1
-01F7	54C5	inc     ra1c
-01F8	4745	mov     a, ra1c
-01F9	43C5	addm    a, ra1c
+01F5	5F45	clr     ra00
+01F6	7CD4	sz      led[0].1
+01F7	54C5	inc     ra00
+01F8	4745	mov     a, ra00
+01F9	43C5	addm    a, ra00
 01FA	34A5	clr     PB1
-01FB	4745	mov     a, ra1c
+01FB	4745	mov     a, ra00
 01FC	05A5	orm     a, PB
 				;448		SC = (led >> 2) & 0x01;
-01FD	5F45	clr     ra1c
-01FE	7D68	sz      led[0].2
-01FF	7145	set     ra1c.2
+01FD	5F45	clr     ra00
+01FE	7D54	sz      led[0].2
+01FF	7145	set     ra00.2
 0200	3525	clr     PB2
-0201	4745	mov     a, ra1c
+0201	4745	mov     a, ra00
 0202	05A5	orm     a, PB
 				;449		SD = (led >> 3) & 0x01;
-0203	4768	mov     a, led[0]
+0203	4754	mov     a, led[0]
 0204	0E08	and     a, 8H
-0205	40C5	mov     ra1c, a
+0205	40C5	mov     ra00, a
 0206	35C0	clr     PC3
-0207	4745	mov     a, ra1c
+0207	4745	mov     a, ra00
 0208	05C0	orm     a, PC
 				;450		SE = (led >> 4) & 0x01;
-0209	4768	mov     a, led[0]
+0209	4754	mov     a, led[0]
 020A	0E10	and     a, 10H
-020B	40C5	mov     ra1c, a
+020B	40C5	mov     ra00, a
 020C	3640	clr     PC4
-020D	4745	mov     a, ra1c
+020D	4745	mov     a, ra00
 020E	05C0	orm     a, PC
 				;451		SF = (led >> 5) & 0x01;
-020F	5F45	clr     ra1c
-0210	7EE8	sz      led[0].5
-0211	54C5	inc     ra1c
-0212	5145	swapa   ra1c
+020F	5F45	clr     ra00
+0210	7ED4	sz      led[0].5
+0211	54C5	inc     ra00
+0212	5145	swapa   ra00
 0213	0EF0	and     a, F0H
-0214	40C5	mov     ra1c, a
+0214	40C5	mov     ra00, a
 0215	3614	clr     PA4
-0216	4745	mov     a, ra1c
+0216	4745	mov     a, ra00
 0217	0594	orm     a, PA
 				;452		SG = (led >> 6) & 0x01;
-0218	5F45	clr     ra1c
-0219	7F68	sz      led[0].6
-021A	54C5	inc     ra1c
-021B	5145	swapa   ra1c
+0218	5F45	clr     ra00
+0219	7F54	sz      led[0].6
+021A	54C5	inc     ra00
+021B	5145	swapa   ra00
 021C	1885	rl      ACC
 021D	0EE0	and     a, E0H
-021E	40C5	mov     ra1c, a
+021E	40C5	mov     ra00, a
 021F	3694	clr     PA5
-0220	4745	mov     a, ra1c
+0220	4745	mov     a, ra00
 0221	0594	orm     a, PA
 0222	0003	ret
 				;453		//DOT = (led >> 7) & 0x01;	
@@ -1062,7 +1062,7 @@
 				;457	{ 
 				_Com_Sel:
 				_Com_Sel:
-0223	40E8	mov     sel[0], a
+0223	40D4	mov     sel[0], a
 				;458		C1 = 0;
 0224	3794	clr     PA7
 				;459		C2 = 0;
@@ -1071,7 +1071,7 @@
 0226	3625	clr     PB4
 				;461		
 				;462		if (sel == 0)
-0227	50E8	sz      sel[0]
+0227	50D4	sz      sel[0]
 0228	2A2B	jmp     L022B
 				;463		{
 				;464			C1 = 1;
@@ -1080,7 +1080,7 @@
 				;465		}
 				;466		else 	if (sel == 1)
 				L022B:
-022B	5768	sdza    sel[0]
+022B	5754	sdza    sel[0]
 022C	2A2F	jmp     L022F
 				;467		{
 				;468			C2 = 1;
@@ -1089,7 +1089,7 @@
 				;469		}
 				;470		else 	if (sel == 2)
 				L022F:
-022F	4768	mov     a, sel[0]
+022F	4754	mov     a, sel[0]
 0230	0A02	sub     a, 2H
 0231	390A	snz     Z
 0232	2A34	jmp     L0234
@@ -1115,27 +1115,27 @@
 				;483		
 				;484		if (led_tmr <= led_duty)
 0237	470E	mov     a, led_tmr[0]
-0238	40E9	mov     _Led_Scan_2, a
+0238	40D5	mov     _Led_Scan_2, a
 0239	470F	mov     a, led_tmr[1]
-023A	40EA	mov     _Led_Scan_2[1], a
+023A	40D6	mov     _Led_Scan_2[1], a
 023B	4710	mov     a, led_tmr[2]
-023C	40EB	mov     _Led_Scan_2[2], a
+023C	40D7	mov     _Led_Scan_2[2], a
 023D	4711	mov     a, led_tmr[3]
-023E	40EC	mov     _Led_Scan_2[3], a
+023E	40D8	mov     _Led_Scan_2[3], a
 023F	4708	mov     a, led_duty[0]
-0240	4269	sub     a, _Led_Scan_2
+0240	4255	sub     a, _Led_Scan_2
 0241	4709	mov     a, led_duty[1]
-0242	526A	sbc     a, _Led_Scan_2[1]
+0242	5256	sbc     a, _Led_Scan_2[1]
 0243	1F05	clr     ACC
-0244	526B	sbc     a, _Led_Scan_2[2]
+0244	5257	sbc     a, _Led_Scan_2[2]
 0245	1F05	clr     ACC
-0246	526C	sbc     a, _Led_Scan_2[3]
+0246	5258	sbc     a, _Led_Scan_2[3]
 0247	380A	snz     C
 0248	2A4D	jmp     _L19
 				;485			Com_Sel(com);
 0249	470C	mov     a, com[0]
-024A	40C5	mov     ra1c, a
-024B	4745	mov     a, ra1c
+024A	40C5	mov     ra00, a
+024B	4745	mov     a, ra00
 024C	2A4E	jmp     _L26
 				;486		else
 				;487			Com_Sel(8);	
@@ -1151,14 +1151,14 @@
 0252	0F00	mov     a, 0H
 0253	1F01	clr     MP0
 0254	1381	adcm    a, MP0
-0255	24C1	call    L04C1
-0256	40C5	mov     ra1c, a
+0255	24C8	call    L04C8
+0256	40C5	mov     ra00, a
 				;490		if ((digit >= '0') && (digit <= '9'))
-0257	4745	mov     a, ra1c
+0257	4745	mov     a, ra00
 0258	0BD0	add     a, D0H
-0259	40C6	mov     rb1c, a
+0259	40C6	mov     rb00, a
 025A	0F09	mov     a, 9H
-025B	4246	sub     a, rb1c
+025B	4246	sub     a, rb00
 025C	3C0A	sz      C
 025D	2A68	jmp     _L27
 				;491		{
@@ -1166,30 +1166,30 @@
 				;493			Digit_Set(seg_7_table[digit]);
 				;494		}
 				;495		else if ((digit >= 'A') && (digit <= 'F'))
-025E	4745	mov     a, ra1c
+025E	4745	mov     a, ra00
 025F	0BBF	add     a, BFH
-0260	40C6	mov     rb1c, a
+0260	40C6	mov     rb00, a
 0261	0F05	mov     a, 5H
-0262	4246	sub     a, rb1c
+0262	4246	sub     a, rb00
 0263	380A	snz     C
 0264	2A73	jmp     _L22
 				;496		{
 				;497			digit = digit - 'A' + 10;
-0265	4745	mov     a, ra1c
+0265	4745	mov     a, ra00
 0266	0BC9	add     a, C9H
-0267	40C6	mov     rb1c, a
+0267	40C6	mov     rb00, a
 				;498			Digit_Set(seg_7_table[digit]);
 				_L27:
-0268	5F47	clr     rc1c
-0269	7FC6	sz      rb1c.7
-026A	5FC7	set     rc1c
+0268	5F47	clr     rc00
+0269	7FC6	sz      rb00.7
+026A	5FC7	set     rc00
 026B	0F17	mov     a, 17H
-026C	4346	add     a, rb1c
+026C	4346	add     a, rb00
 026D	0083	mov     MP1, a
 026E	0F80	mov     a, 80H
-026F	5347	adc     a, rc1c
+026F	5347	adc     a, rc00
 0270	0081	mov     MP0, a
-0271	24C1	call    L04C1
+0271	24C8	call    L04C8
 0272	21EE	call    _Digit_Set
 				;499		}
 				;500		
@@ -1203,13 +1203,13 @@
 				;503			com = 0;
 0277	5F0C	clr     com[0]
 				;504			if (led_tmr >= led_period)
-0278	50EC	sz      _Led_Scan_2[3]
+0278	50D8	sz      _Led_Scan_2[3]
 0279	2A82	jmp     _LI2
-027A	50EB	sz      _Led_Scan_2[2]
+027A	50D7	sz      _Led_Scan_2[2]
 027B	2A82	jmp     _LI2
-027C	4769	mov     a, _Led_Scan_2
+027C	4755	mov     a, _Led_Scan_2
 027D	420A	sub     a, led_period[0]
-027E	476A	mov     a, _Led_Scan_2[1]
+027E	4756	mov     a, _Led_Scan_2[1]
 027F	520B	sbc     a, led_period[1]
 0280	380A	snz     C
 0281	2A87	jmp     _L24
@@ -1224,16 +1224,16 @@
 				;507				led_tmr++;
 				_L24:
 0287	0F01	mov     a, 1H
-0288	4369	add     a, _Led_Scan_2
+0288	4355	add     a, _Led_Scan_2
 0289	408E	mov     led_tmr[0], a
 028A	0F00	mov     a, 0H
-028B	536A	adc     a, _Led_Scan_2[1]
+028B	5356	adc     a, _Led_Scan_2[1]
 028C	408F	mov     led_tmr[1], a
 028D	0F00	mov     a, 0H
-028E	536B	adc     a, _Led_Scan_2[2]
+028E	5357	adc     a, _Led_Scan_2[2]
 028F	4090	mov     led_tmr[2], a
 0290	0F00	mov     a, 0H
-0291	536C	adc     a, _Led_Scan_2[3]
+0291	5358	adc     a, _Led_Scan_2[3]
 0292	4091	mov     led_tmr[3], a
 0293	2A95	jmp     _L18
 				;508		}
@@ -1250,91 +1250,91 @@
 				;515		return ~(0x80 | (KS7 << 6) | (KS6 << 5) | (KS5 << 4) | (KS4 << 3) | (KS3 << 2) | (KS2 << 1) | (KS1 << 0));
 				_Key_Scan:
 				_Key_Scan:
-0296	5F48	clr     rd20
+0296	5F48	clr     rd00
 0297	3EA5	sz      PB5
-0298	54C8	inc     rd20
-0299	5F49	clr     rb20
+0298	54C8	inc     rd00
+0299	5F46	clr     rb00
 029A	3F25	sz      PB6
-029B	54C9	inc     rb20
-029C	5F4A	clr     rf20
+029B	54C6	inc     rb00
+029C	5F49	clr     rf00
 029D	3D94	sz      PA3
-029E	54CA	inc     rf20
-029F	5F4B	clr     rg20
+029E	54C9	inc     rf00
+029F	5F4A	clr     rg00
 02A0	3C94	sz      PA1
-02A1	54CB	inc     rg20
-02A2	5F4C	clr     rh20
+02A1	54CA	inc     rg00
+02A2	5F4B	clr     rh00
 02A3	3D40	sz      PC2
-02A4	54CC	inc     rh20
-02A5	5F4D	clr     ra20
+02A4	54CB	inc     rh00
+02A5	5F45	clr     ra00
 02A6	3CC0	sz      PC1
-02A7	54CD	inc     ra20
+02A7	54C5	inc     ra00
 02A8	0740	mov     a, PC
 02A9	0E01	and     a, 1H
-02AA	40CE	mov     rc20, a
-02AB	73CE	set     rc20.7
-02AC	5F4F	clr     re20
+02AA	40C7	mov     rc00, a
+02AB	73C7	set     rc00.7
+02AC	5F4C	clr     re00
 02AD	0F06	mov     a, 6H
 				_LI3:
 02AE	340A	clr     C
-02AF	5AC8	rlc     rd20
-02B0	5ACF	rlc     re20
+02AF	5AC8	rlc     rd00
+02B0	5ACC	rlc     re00
 02B1	1785	sdz     ACC
 02B2	2AAE	jmp     _LI3
-02B3	474E	mov     a, rc20
-02B4	45C8	orm     a, rd20
-02B5	5F4E	clr     rc20
+02B3	4747	mov     a, rc00
+02B4	45C8	orm     a, rd00
+02B5	5F47	clr     rc00
 02B6	0F05	mov     a, 5H
 				_LI4:
 02B7	340A	clr     C
-02B8	5AC9	rlc     rb20
-02B9	5ACE	rlc     rc20
+02B8	5AC6	rlc     rb00
+02B9	5AC7	rlc     rc00
 02BA	1785	sdz     ACC
 02BB	2AB7	jmp     _LI4
-02BC	4749	mov     a, rb20
-02BD	45C8	orm     a, rd20
-02BE	474A	mov     a, rf20
-02BF	40C9	mov     rb20, a
-02C0	5F4E	clr     rc20
+02BC	4746	mov     a, rb00
+02BD	45C8	orm     a, rd00
+02BE	4749	mov     a, rf00
+02BF	40C6	mov     rb00, a
+02C0	5F47	clr     rc00
 02C1	0F04	mov     a, 4H
 				_LI5:
 02C2	340A	clr     C
-02C3	5AC9	rlc     rb20
-02C4	5ACE	rlc     rc20
+02C3	5AC6	rlc     rb00
+02C4	5AC7	rlc     rc00
 02C5	1785	sdz     ACC
 02C6	2AC2	jmp     _LI5
-02C7	4749	mov     a, rb20
-02C8	45C8	orm     a, rd20
-02C9	474B	mov     a, rg20
-02CA	40CA	mov     rf20, a
-02CB	5F4B	clr     rg20
+02C7	4746	mov     a, rb00
+02C8	45C8	orm     a, rd00
+02C9	474A	mov     a, rg00
+02CA	40C9	mov     rf00, a
+02CB	5F4A	clr     rg00
 02CC	0F03	mov     a, 3H
 				_LI6:
 02CD	340A	clr     C
-02CE	5ACA	rlc     rf20
-02CF	5ACB	rlc     rg20
+02CE	5AC9	rlc     rf00
+02CF	5ACA	rlc     rg00
 02D0	1785	sdz     ACC
 02D1	2ACD	jmp     _LI6
-02D2	474A	mov     a, rf20
-02D3	45C8	orm     a, rd20
-02D4	474C	mov     a, rh20
-02D5	40CA	mov     rf20, a
-02D6	5F4B	clr     rg20
+02D2	4749	mov     a, rf00
+02D3	45C8	orm     a, rd00
+02D4	474B	mov     a, rh00
+02D5	40C9	mov     rf00, a
+02D6	5F4A	clr     rg00
 02D7	340A	clr     C
-02D8	5ACA	rlc     rf20
-02D9	5ACB	rlc     rg20
+02D8	5AC9	rlc     rf00
+02D9	5ACA	rlc     rg00
 02DA	340A	clr     C
-02DB	5ACA	rlc     rf20
-02DC	5ACB	rlc     rg20
-02DD	4748	mov     a, rd20
-02DE	45CA	orm     a, rf20
-02DF	474D	mov     a, ra20
-02E0	43CD	addm    a, ra20
-02E1	474D	mov     a, ra20
-02E2	45CA	orm     a, rf20
-02E3	414A	cpla    rf20
-02E4	40CA	mov     rf20, a
+02DB	5AC9	rlc     rf00
+02DC	5ACA	rlc     rg00
+02DD	4748	mov     a, rd00
+02DE	45C9	orm     a, rf00
+02DF	4745	mov     a, ra00
+02E0	43C5	addm    a, ra00
+02E1	4745	mov     a, ra00
+02E2	45C9	orm     a, rf00
+02E3	4149	cpla    rf00
+02E4	40C9	mov     rf00, a
 				;516	}
-02E5	474A	mov     a, rf20
+02E5	4749	mov     a, rf00
 02E6	0003	ret
 				;517	
 				;518	void Clear_Rx(void)
@@ -1356,22 +1356,22 @@
 				;527	DEFINE_ISR(Int_Tb0, 0x1C) //
 				;528	{			
 				@Int_Tb0_code .SECTION 'CODE'
-001C	40D0	mov     r11c, a
+001C	40CD	mov     r100, a
 001D	0704	mov     a, BP
-001E	40D1	mov     r21c, a
+001E	40CE	mov     r200, a
 001F	2BF2	jmp     _Int_Tb0
 				_Int_Tb0:
 				_Int_Tb0:
 03F2	070A	mov     a, STATUS
-03F3	40D2	mov     r31c, a
+03F3	40CF	mov     r300, a
 03F4	0703	mov     a, MP1
-03F5	40D3	mov     r41c, a
+03F5	40D0	mov     r400, a
 03F6	0701	mov     a, MP0
-03F7	40D4	mov     r51c, a
+03F7	40D1	mov     r500, a
 03F8	0707	mov     a, TBLP
-03F9	40D5	mov     r61c, a
+03F9	40D2	mov     r600, a
 03FA	0709	mov     a, TBHP
-03FB	40D6	mov     r71c, a
+03FB	40D3	mov     r700, a
 				;529		
 				;530		FeedWatchDog();
 03FC	0001	clr     wdt
@@ -1379,20 +1379,20 @@
 03FD	2235	call    _Led_Scan
 				;532		_tb0f = 0;
 03FE	378F	clr     TB0F
-03FF	4751	mov     a, r21c
+03FF	474E	mov     a, r200
 0400	0084	mov     BP, a
-0401	4752	mov     a, r31c
+0401	474F	mov     a, r300
 0402	008A	mov     STATUS, a
-0403	4753	mov     a, r41c
+0403	4750	mov     a, r400
 0404	0083	mov     MP1, a
-0405	4754	mov     a, r51c
+0405	4751	mov     a, r500
 0406	0081	mov     MP0, a
-0407	4755	mov     a, r61c
+0407	4752	mov     a, r600
 0408	0087	mov     TBLP, a
-0409	4756	mov     a, r71c
+0409	4753	mov     a, r700
 040A	0089	mov     TBHP, a
 040B	1D05	tabrd   ACC
-040C	4750	mov     a, r11c
+040C	474D	mov     a, r100
 040D	0004	reti
 				;533	}
 				;534	
@@ -1400,40 +1400,40 @@
 				;536	{		
 				@Int_Tb1_code .SECTION 'CODE'
 				@dummy28 .SECTION 'CODE'
-0020	40D7	mov     r120, a
+0020	40CD	mov     r100, a
 0021	0704	mov     a, BP
-0022	40D8	mov     r220, a
+0022	40CE	mov     r200, a
 0023	2C0E	jmp     _Int_Tb1
 				_Int_Tb1:
 				_Int_Tb1:
 040E	070A	mov     a, STATUS
-040F	40D9	mov     r320, a
+040F	40CF	mov     r300, a
 0410	0703	mov     a, MP1
-0411	40DA	mov     r420, a
+0411	40D0	mov     r400, a
 0412	0701	mov     a, MP0
-0413	40DB	mov     r520, a
+0413	40D1	mov     r500, a
 0414	0707	mov     a, TBLP
-0415	40DC	mov     r620, a
+0415	40D2	mov     r600, a
 0416	0709	mov     a, TBHP
-0417	40DD	mov     r720, a
+0417	40D3	mov     r700, a
 				;537		static uint8_t cnt = 0;
 				;538		FeedWatchDog();	
 0418	0001	clr     wdt
 				;539	/* Read Key */	
 				;540		key_stat = Key_Scan();	
 0419	2296	call    _Key_Scan
-041A	40CD	mov     ra20, a
-041B	474D	mov     a, ra20
+041A	40C5	mov     ra00, a
+041B	4745	mov     a, ra00
 041C	4082	mov     key_stat[0], a
 				;541		
 				;542		if (cnt++ > 10)
 041D	470D	mov     a, cnt[0]
-041E	40CD	mov     ra20, a
+041E	40C5	mov     ra00, a
 041F	0F0A	mov     a, AH
-0420	424D	sub     a, ra20
+0420	4245	sub     a, ra00
 0421	380A	snz     C
 0422	2C26	jmp     _L59
-0423	544D	inca    ra20
+0423	5445	inca    ra00
 0424	408D	mov     cnt[0], a
 0425	2C2C	jmp     _L60
 				;543		{
@@ -1456,20 +1456,20 @@
 				;552		_tb1f = 0;
 				_L60:
 042C	3610	clr     TB1F
-042D	4758	mov     a, r220
+042D	474E	mov     a, r200
 042E	0084	mov     BP, a
-042F	4759	mov     a, r320
+042F	474F	mov     a, r300
 0430	008A	mov     STATUS, a
-0431	475A	mov     a, r420
+0431	4750	mov     a, r400
 0432	0083	mov     MP1, a
-0433	475B	mov     a, r520
+0433	4751	mov     a, r500
 0434	0081	mov     MP0, a
-0435	475C	mov     a, r620
+0435	4752	mov     a, r600
 0436	0087	mov     TBLP, a
-0437	475D	mov     a, r720
+0437	4753	mov     a, r700
 0438	0089	mov     TBHP, a
 0439	1D05	tabrd   ACC
-043A	4757	mov     a, r120
+043A	474D	mov     a, r100
 043B	0004	reti
 				;553	}
 				;554	
@@ -1477,9 +1477,9 @@
 				;556	{
 				@dummy40 .SECTION 'CODE'
 				@Int_UART_code .SECTION 'CODE'
-002C	40DE	mov     r12c, a
+002C	40CD	mov     r100, a
 002D	070A	mov     a, STATUS
-002E	40DF	mov     r22c, a
+002E	40CE	mov     r200, a
 002F	2C3C	jmp     _Int_UART
 				;557		//volatile uint8_t temp, i;
 				;558		
@@ -1516,167 +1516,243 @@
 				;586		
 				;587		_uartf = 0;
 043D	3790	clr     UARTF
-043E	475F	mov     a, r22c
+043E	474E	mov     a, r200
 043F	008A	mov     STATUS, a
-0440	475E	mov     a, r12c
+0440	474D	mov     a, r100
 0441	0004	reti
 				;588	}
 				;589	
-				;590	DEFINE_ISR(Int_I2C, 0x28)
-				;591	{
+				;590	//DEFINE_ISR(Int_I2C, 0x28)
+				;591	//{
+				;592	//	volatile uint8_t u8temp;
+				;593	//	//EMI_OFF();
+				;594	//	
+				;595	//	FeedWatchDog();
+				;596	//	if (I2C_TIMEOUT == 1)
+				;597	//	{
+				;598	//		I2C_TIMEOUT_EN = 1;
+				;599	//		I2C_TIMEOUT = 0;
+				;600	//	}
+				;601	//	else 
+				;602	//	{
+				;603	//		if (I2C_ADDR_MATCH == 1)	// address match
+				;604	//		{
+				;605	////			ptr_i2c_tx_buff = 0;
+				;606	////			ptr_i2c_rx_buff = 0;
+				;607	//			if (I2C_READ == 1) // master request data
+				;608	//			{
+				;609	//				I2C_TRANSMITTER = 1;
+				;610	//				ptr_i2c_tx_buff = 0;
+				;611	//				I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff];
+				;612	//				ptr_i2c_tx_buff++;			
+				;613	//			}	
+				;614	//			else // master feed data
+				;615	//			{
+				;616	//				I2C_TRANSMITTER = 0;
+				;617	//				I2C_TX_NOACK = 0;				
+				;618	//				ptr_i2c_rx_buff = 0;
+				;619	//				u8temp = I2C_DATA; //dummy read
+				;620	//			}
+				;621	//		}
+				;622	//		else  // data transfer
+				;623	//		{
+				;624	//			if (I2C_TRANSMITTER == 0) // master feed data
+				;625	//			{
+				;626	//				//if (ptr_i2c_rx_buff < (BUFF_LEN - 1))
+				;627	//				if (ptr_i2c_rx_buff < BUFF_LEN )
+				;628	//				{	
+				;629	//					buff_i2c_rx[ptr_i2c_rx_buff] = I2C_DATA;				
+				;630	//					GCC_NOP();						
+				;631	//					ptr_i2c_rx_buff ++;	 // ptr_i2c_rx_buff is the next saved buffer address	
+				;632	//				}
+				;633	//
+				;634	//			}
+				;635	//			else // master request data
+				;636	//			{
+				;637	//				if (I2C_RX_NOACK == 0) // ack
+				;638	//				{
+				;639	//					I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff];
+				;640	//					ptr_i2c_tx_buff++;	
+				;641	//				}
+				;642	//				else // no ack, return to RX mode
+				;643	//				{
+				;644	//					I2C_TRANSMITTER = 0;
+				;645	//					I2C_TX_NOACK = 0;
+				;646	//					u8temp = I2C_DATA; //dummy read
+				;647	//				}
+				;648	//			}
+				;649	//		}
+				;650	//	}
+				;651	//
+				;652	//	I2C_INT_FLAG = 0;	
+				;653	//	//EMI_ON();
+				;654	//}
+				;655	
+				;656	DEFINE_ISR(Int_I2C, 0x28)
+				;657	{
 				@Int_I2C_code .SECTION 'CODE'
-0028	40E0	mov     r128, a
+0028	40CD	mov     r100, a
 0029	0704	mov     a, BP
-002A	40E1	mov     r228, a
+002A	40CE	mov     r200, a
 002B	2C42	jmp     _Int_I2C
 				_Int_I2C:
 				_Int_I2C:
 0442	070A	mov     a, STATUS
-0443	40E2	mov     r328, a
+0443	40CF	mov     r300, a
 0444	0703	mov     a, MP1
-0445	40E3	mov     r428, a
+0445	40D0	mov     r400, a
 0446	0701	mov     a, MP0
-0447	40E4	mov     r528, a
+0447	40D1	mov     r500, a
 0448	0707	mov     a, TBLP
-0449	40E5	mov     r628, a
+0449	40D2	mov     r600, a
 044A	0709	mov     a, TBHP
-044B	40E6	mov     r728, a
-				;592		volatile uint8_t u8temp;
-				;593		EMI_OFF();
-044C	300E	set     EMI
-				;594		
-				;595		FeedWatchDog();
-044D	0001	clr     wdt
-				;596		if (I2C_TIMEOUT == 1)
-044E	3B4D	snz     I2CTOF
-044F	2C53	jmp     L0453
-				;597		{
-				;598			I2C_TIMEOUT_EN = 1;
-0450	33CD	set     I2CTOEN
-				;599			I2C_TIMEOUT = 0;
-0451	374D	clr     I2CTOF
-0452	2C7D	jmp     L047D
-				;600		}
-				;601		else 
-				;602		{
-				;603			if (I2C_ADDR_MATCH == 1)	// address match
-				L0453:
-0453	3B4A	snz     IICHAAS
-0454	2C5A	jmp     L045A
-				;604			{
-				;605				ptr_i2c_tx_buff = 0;
-0455	5F00	clr     ptr_i2c_tx_buff[0]
-				;606				if (I2C_READ == 1) // master request data
-0456	394A	snz     IICSRW
-0457	2C79	jmp     L0479
-				;607				{
-				;608					I2C_TRANSMITTER = 1;
-0458	324A	set     IICHTX
-0459	2C6F	jmp     L046F
-				;609					//ptr_i2c_tx_buff = 0;
-				;610					I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff];
-				;611					ptr_i2c_tx_buff++;			
-				;612				}	
-				;613				else // master feed data
-				;614				{
-				;615					I2C_TRANSMITTER = 0;
-				;616					I2C_TX_NOACK = 0;				
-				;617					//ptr_i2c_rx_buff = 0;
-				;618					u8temp = I2C_DATA; //dummy read
-				;619				}
-				;620			}
-				;621			else  // data transfer
-				;622			{
-				;623				if (I2C_TRANSMITTER == 0) // master feed data
-				L045A:
-045A	3E4A	sz      IICHTX
-045B	2C6D	jmp     L046D
-				;624				{
-				;625					if (ptr_i2c_rx_buff < (BUFF_LEN - 1))
-045C	0F0E	mov     a, EH
-045D	4201	sub     a, ptr_i2c_rx_buff[0]
-045E	380A	snz     C
-045F	2C7D	jmp     L047D
-				;626					{	
-				;627						buff_i2c_rx[ptr_i2c_rx_buff] = I2C_DATA;				
-0460	0FAD	mov     a, ADH
-0461	4301	add     a, ptr_i2c_rx_buff[0]
-0462	0083	mov     MP1, a
-0463	0F00	mov     a, 0H
-0464	1F01	clr     MP0
-0465	1381	adcm    a, MP0
-0466	0701	mov     a, MP0
-0467	0084	mov     BP, a
-0468	074B	mov     a, IICD
-0469	0082	mov     __iar1[0], a
-				;628						GCC_NOP();						
-046A	0000	nop
-				;629						ptr_i2c_rx_buff ++;	 // ptr_i2c_rx_buff is the next saved buffer address	
-046B	5481	inc     ptr_i2c_rx_buff[0]
-046C	2C7D	jmp     L047D
-				;630					}
-				;631	
-				;632				}
-				;633				else // master request data
-				;634				{
-				;635					if (I2C_RX_NOACK == 0) // ack
-				L046D:
-046D	3C4A	sz      IICRXAK
-046E	2C79	jmp     L0479
-				;636					{
-				;637						I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff];
-				L046F:
-046F	0F9A	mov     a, 9AH
-0470	4300	add     a, ptr_i2c_tx_buff[0]
-0471	0083	mov     MP1, a
-0472	0F00	mov     a, 0H
-0473	1F01	clr     MP0
-0474	1381	adcm    a, MP0
-0475	24C1	call    L04C1
-0476	00CB	mov     IICD, a
-				;638						ptr_i2c_tx_buff++;	
-0477	5480	inc     ptr_i2c_tx_buff[0]
-0478	2C7D	jmp     L047D
-				;639					}
-				;640					else // no ack, return to RX mode
-				;641					{
-				;642						I2C_TRANSMITTER = 0;
-				L0479:
-0479	364A	clr     IICHTX
-				;643						I2C_TX_NOACK = 0;
-047A	35CA	clr     IICTXAK
-				;644						u8temp = I2C_DATA; //dummy read
-047B	074B	mov     a, IICD
-047C	40E7	mov     u8temp[0], a
-				;645					}
-				;646				}
-				;647			}
-				;648		}
-				;649	
-				;650		I2C_INT_FLAG = 0;	
-				L047D:
-047D	3710	clr     IICF
-				;651		EMI_ON();
-047E	300E	set     EMI
-047F	4761	mov     a, r228
-0480	0084	mov     BP, a
-0481	4762	mov     a, r328
-0482	008A	mov     STATUS, a
-0483	4763	mov     a, r428
-0484	0083	mov     MP1, a
-0485	4764	mov     a, r528
-0486	0081	mov     MP0, a
-0487	4765	mov     a, r628
-0488	0087	mov     TBLP, a
-0489	4766	mov     a, r728
-048A	0089	mov     TBHP, a
-048B	1D05	tabrd   ACC
-048C	4760	mov     a, r128
-048D	0004	reti
+044B	40D3	mov     r700, a
+				;658		volatile uint8_t u8temp;
+				;659		//EMI_OFF();
+				;660		
+				;661		FeedWatchDog();
+044C	0001	clr     wdt
+				;662		if (_i2ctof == 1)
+044D	3B4D	snz     I2CTOF
+044E	2C52	jmp     L0452
+				;663		{
+				;664			_i2ctoen = 1;
+044F	33CD	set     I2CTOEN
+				;665			_i2ctof = 0;
+0450	374D	clr     I2CTOF
+0451	2C85	jmp     L0485
+				;666		}
+				;667		else 
+				;668		{
+				;669			if (_iichaas == 1)	// address match
+				L0452:
+0452	3B4A	snz     IICHAAS
+0453	2C5D	jmp     L045D
+				;670			{
+				;671	//			ptr_i2c_tx_buff = 0;
+				;672	//			ptr_i2c_rx_buff = 0;
+				;673				if (_iicsrw == 1) // master request data
+0454	394A	snz     IICSRW
+0455	2C59	jmp     L0459
+				;674				{
+				;675					_iichtx = 1;
+0456	324A	set     IICHTX
+				;676					ptr_i2c_tx_buff = 0;
+0457	5F00	clr     ptr_i2c_tx_buff[0]
+0458	2C74	jmp     L0474
+				;677					I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff++];
+				;678					//ptr_i2c_tx_buff++;			
+				;679				}	
+				;680				else // master feed data
+				;681				{
+				;682					_iichtx = 0;
+				L0459:
+0459	364A	clr     IICHTX
+				;683					_iictxak = 0;				
+045A	35CA	clr     IICTXAK
+				;684					ptr_i2c_rx_buff = 0;
+045B	5F01	clr     ptr_i2c_rx_buff[0]
+045C	2C83	jmp     L0483
+				;685					u8temp = I2C_DATA; //dummy read
+				;686				}
+				;687			}
+				;688			else  // data transfer
+				;689			{
+				;690				if (_iichtx == 0) // master feed data
+				L045D:
+045D	3E4A	sz      IICHTX
+045E	2C72	jmp     L0472
+				;691				{
+				;692					//if (ptr_i2c_rx_buff < (BUFF_LEN - 1))
+				;693					if (ptr_i2c_rx_buff < BUFF_LEN )
+045F	0F0F	mov     a, FH
+0460	4201	sub     a, ptr_i2c_rx_buff[0]
+0461	380A	snz     C
+0462	2C85	jmp     L0485
+				;694					{	
+				;695						buff_i2c_rx[ptr_i2c_rx_buff++] = I2C_DATA;				
+0463	4701	mov     a, ptr_i2c_rx_buff[0]
+0464	40C5	mov     ra00, a
+0465	5445	inca    ra00
+0466	4081	mov     ptr_i2c_rx_buff[0], a
+0467	0FAD	mov     a, ADH
+0468	4345	add     a, ra00
+0469	0083	mov     MP1, a
+046A	0F00	mov     a, 0H
+046B	1F01	clr     MP0
+046C	1381	adcm    a, MP0
+046D	0701	mov     a, MP0
+046E	0084	mov     BP, a
+046F	074B	mov     a, IICD
+0470	0082	mov     __iar1[0], a
+0471	2C85	jmp     L0485
+				;696						//GCC_NOP();						
+				;697						//ptr_i2c_rx_buff ++;	 // ptr_i2c_rx_buff is the next saved buffer address	
+				;698					}
+				;699	
+				;700				}
+				;701				else // master request data
+				;702				{
+				;703					if (_iicrxak == 0) // ack
+				L0472:
+0472	3C4A	sz      IICRXAK
+0473	2C81	jmp     L0481
+				;704					{
+				;705						I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff++];
+				L0474:
+0474	4700	mov     a, ptr_i2c_tx_buff[0]
+0475	40C5	mov     ra00, a
+0476	5445	inca    ra00
+0477	4080	mov     ptr_i2c_tx_buff[0], a
+0478	0F9A	mov     a, 9AH
+0479	4345	add     a, ra00
+047A	0083	mov     MP1, a
+047B	0F00	mov     a, 0H
+047C	1F01	clr     MP0
+047D	1381	adcm    a, MP0
+047E	24C8	call    L04C8
+047F	00CB	mov     IICD, a
+0480	2C85	jmp     L0485
+				;706						//ptr_i2c_tx_buff++;	
+				;707					}
+				;708					else // no ack, return to RX mode
+				;709					{
+				;710						_iichtx = 0;
+				L0481:
+0481	364A	clr     IICHTX
+				;711						_iictxak = 0;
+0482	35CA	clr     IICTXAK
+				;712						u8temp = I2C_DATA; //dummy read
+				L0483:
+0483	074B	mov     a, IICD
+0484	40D4	mov     u8temp[0], a
+				;713					}
+				;714				}
+				;715			}
+				;716		}
+				;717	
+				;718		I2C_INT_FLAG = 0;	
+				L0485:
+0485	3710	clr     IICF
+0486	474E	mov     a, r200
+0487	0084	mov     BP, a
+0488	474F	mov     a, r300
+0489	008A	mov     STATUS, a
+048A	4750	mov     a, r400
+048B	0083	mov     MP1, a
+048C	4751	mov     a, r500
+048D	0081	mov     MP0, a
+048E	4752	mov     a, r600
+048F	0087	mov     TBLP, a
+0490	4753	mov     a, r700
+0491	0089	mov     TBHP, a
+0492	1D05	tabrd   ACC
+0493	474D	mov     a, r100
+0494	0004	reti
 				startup_value:
 				@ROMDATA_BASE .SECTION 'CODE'
-048E	000D	dc	0000DH
-048F	0080	mov     [00H], a
+0495	000D	dc	0000DH
+0496	0080	mov     [00H], a
 				@ROMDATA_BASE .SECTION 'CODE'
 				@ROMDATA_BASE .SECTION 'CODE'
 				@ROMDATA_BASE .SECTION 'CODE'
@@ -1686,16 +1762,16 @@
 				@ROMDATA_BASE .SECTION 'CODE'
 				@ROMDATA_BASE .SECTION 'CODE'
 				@ROMDATA_BASE .SECTION 'CODE'
-0490	0000	nop
-0491	4600	and     a, ptr_i2c_tx_buff[0]
-0492	4646	and     a, rb1c
-0493	0000	nop
-				;652	}
-				;653	
-				;654	void Power_On_Reset(void)
-				;655	{
-				;656		_lvrc = 0;	
-				;657	}
+0497	0000	nop
+0498	4600	and     a, ptr_i2c_tx_buff[0]
+0499	4646	and     a, rb00
+049A	0000	nop
+				;719		//EMI_ON();
+				;720	}
+				;721	void Power_On_Reset(void)
+				;722	{
+				;723		_lvrc = 0;	
+				;724	}
 				;file D:\WORK\Project\Github\etable\code\I2C\startup0_l.asm
 				;1	;;--------------------------------------------------------------;;
 				;2	;;    This file is part of the Holtek C Compiler V3 package     ;;
@@ -1728,7 +1804,7 @@
 				@dummy44 .SECTION 'CODE'
 				_main_startup1:
 				@start .SECTION 'CODE'
-0030	0F8D	mov     a, 8DH
+0030	0F94	mov     a, 94H
 				;27	  mov tblp,a
 0031	0087	mov     TBLP, a
 				;28	  mov a,high (offset startup_value_1) 
@@ -1994,7 +2070,7 @@
 				;38	{
 				_my_strcpy1:
 				_my_strcpy1:
-007D	40F1	mov     num[0], a
+007D	40DD	mov     num[0], a
 				;39		int i = 0;
 				;40		for (i=0 ; i < num ; i++)
 007E	5F3F	clr     rb
@@ -2004,7 +2080,7 @@
 0094	3D0A	sz      Z
 0095	54C0	inc     rc
 				L0096:
-0096	4771	mov     a, num[0]
+0096	475D	mov     a, num[0]
 0097	40C1	mov     rd, a
 0098	5F42	clr     re
 0099	473F	mov     a, rb
@@ -2020,18 +2096,18 @@
 				;42			dest[i] = (uint8_t)source[i];
 				L0081:
 0081	473F	mov     a, rb
-0082	436F	add     a, source[0]
+0082	435B	add     a, source[0]
 0083	0083	mov     MP1, a
 0084	4740	mov     a, rc
-0085	5370	adc     a, source[1]
+0085	535C	adc     a, source[1]
 0086	0081	mov     MP0, a
-0087	24C1	call    L04C1
+0087	24C8	call    L04C8
 0088	40BE	mov     ra, a
 0089	473F	mov     a, rb
-008A	436D	add     a, dest[0]
+008A	4359	add     a, dest[0]
 008B	0083	mov     MP1, a
 008C	4740	mov     a, rc
-008D	536E	adc     a, dest[1]
+008D	535A	adc     a, dest[1]
 008E	0081	mov     MP0, a
 008F	0701	mov     a, MP0
 0090	0084	mov     BP, a
@@ -2096,13 +2172,13 @@
 				;99		temp = n;
 				_utoa:
 				_utoa:
-00A2	4775	mov     a, n[0]
-00A3	40F9	mov     temp[0], a
-00A4	4776	mov     a, n[1]
-00A5	40FA	mov     temp[1], a
+00A2	4761	mov     a, n[0]
+00A3	40E5	mov     temp[0], a
+00A4	4762	mov     a, n[1]
+00A5	40E6	mov     temp[1], a
 				;100		if (n ==0 )
-00A6	4775	mov     a, n[0]
-00A7	4576	or      a, n[1]
+00A6	4761	mov     a, n[0]
+00A7	4562	or      a, n[1]
 00A8	390A	snz     Z
 00A9	28C7	jmp     _L29
 				_L29:
@@ -2112,29 +2188,29 @@
 				;101		{
 				;102			for (i = 0; i < 3; i++)
 				;103				str[i] = '0';
-00AA	4777	mov     a, str[0]
+00AA	4763	mov     a, str[0]
 00AB	0083	mov     MP1, a
-00AC	4778	mov     a, str[1]
+00AC	4764	mov     a, str[1]
 00AD	0081	mov     MP0, a
 00AE	0701	mov     a, MP0
 00AF	0084	mov     BP, a
 00B0	0F30	mov     a, 30H
 00B1	0082	mov     __iar1[0], a
 00B2	0F01	mov     a, 1H
-00B3	4377	add     a, str[0]
+00B3	4363	add     a, str[0]
 00B4	0083	mov     MP1, a
 00B5	0F00	mov     a, 0H
-00B6	5378	adc     a, str[1]
+00B6	5364	adc     a, str[1]
 00B7	0081	mov     MP0, a
 00B8	0701	mov     a, MP0
 00B9	0084	mov     BP, a
 00BA	0F30	mov     a, 30H
 00BB	0082	mov     __iar1[0], a
 00BC	0F02	mov     a, 2H
-00BD	4377	add     a, str[0]
+00BD	4363	add     a, str[0]
 00BE	0083	mov     MP1, a
 00BF	0F00	mov     a, 0H
-00C0	5378	adc     a, str[1]
+00C0	5364	adc     a, str[1]
 00C1	0081	mov     MP0, a
 00C2	0701	mov     a, MP0
 00C3	0084	mov     BP, a
@@ -2153,18 +2229,18 @@
 				;108			{
 				;109				str[i] = "0123456789"[temp%10];	// str[2]:MSB
 				_L31:
-00CA	5F73	clr     i
-00CB	4779	mov     a, temp[0]
-00CC	40ED	mov     level, a
-00CD	477A	mov     a, temp[1]
-00CE	40EE	mov     addr, a
+00CA	5F5F	clr     i
+00CB	4765	mov     a, temp[0]
+00CC	40D9	mov     level, a
+00CD	4766	mov     a, temp[1]
+00CE	40DA	mov     addr, a
 00CF	0F0A	mov     a, AH
-00D0	40EF	mov     addr, a
-00D1	5F70	clr     buff
-00D2	249B	call    L049B
-00D3	4771	mov     a, num
+00D0	40DB	mov     addr, a
+00D1	5F5C	clr     buff
+00D2	24A2	call    L04A2
+00D3	475D	mov     a, num
 00D4	40BF	mov     rb, a
-00D5	4772	mov     a, n
+00D5	475E	mov     a, n
 00D6	40C0	mov     rc, a
 00D7	0F02	mov     a, 2H
 00D8	433F	add     a, rb
@@ -2172,32 +2248,32 @@
 00DA	0F80	mov     a, 80H
 00DB	5340	adc     a, rc
 00DC	0081	mov     MP0, a
-00DD	24C1	call    L04C1
+00DD	24C8	call    L04C8
 00DE	40BF	mov     rb, a
 00DF	4741	mov     a, rd
-00E0	4377	add     a, str[0]
+00E0	4363	add     a, str[0]
 00E1	0083	mov     MP1, a
 00E2	1F05	clr     ACC
-00E3	5378	adc     a, str[1]
+00E3	5364	adc     a, str[1]
 00E4	0081	mov     MP0, a
 00E5	0701	mov     a, MP0
 00E6	0084	mov     BP, a
 00E7	473F	mov     a, rb
 00E8	0082	mov     __iar1[0], a
 				;110				temp /= 10;
-00E9	5F73	clr     i
-00EA	4779	mov     a, temp[0]
-00EB	40ED	mov     level, a
-00EC	477A	mov     a, temp[1]
-00ED	40EE	mov     addr, a
+00E9	5F5F	clr     i
+00EA	4765	mov     a, temp[0]
+00EB	40D9	mov     level, a
+00EC	4766	mov     a, temp[1]
+00ED	40DA	mov     addr, a
 00EE	0F0A	mov     a, AH
-00EF	40EF	mov     addr, a
-00F0	5F70	clr     buff
-00F1	249B	call    L049B
-00F2	476D	mov     a, level
-00F3	40F9	mov     temp[0], a
-00F4	476E	mov     a, addr
-00F5	40FA	mov     temp[1], a
+00EF	40DB	mov     addr, a
+00F0	5F5C	clr     buff
+00F1	24A2	call    L04A2
+00F2	4759	mov     a, level
+00F3	40E5	mov     temp[0], a
+00F4	475A	mov     a, addr
+00F5	40E6	mov     temp[1], a
 				;111			}	
 				;112		}
 				;113	}
@@ -2243,7 +2319,7 @@
 				_EE_Write_Byte:
 				_EE_Write_Byte:
 00FA	40BE	mov     ra, a
-00FB	40EE	mov     addr[0], a
+00FB	40DA	mov     addr[0], a
 				;153		uint16_t i = 0xFFFF;
 0108	5FBF	set     rb
 0109	5FC0	set     rc
@@ -2252,7 +2328,7 @@
 00FC	473E	mov     a, ra
 00FD	009E	mov     EEA, a
 				;156		_eed = data;
-00FE	476D	mov     a, data[0]
+00FE	4759	mov     a, data[0]
 00FF	009F	mov     EED, a
 				;157		_mp1 = 0x40; //EEC control register is located at address 40H in Bank 1
 0100	0F40	mov     a, 40H
@@ -2319,33 +2395,33 @@
 				;181	{
 				_EE_Write:
 				_EE_Write:
-0126	40F2	mov     n[0], a
+0126	40DE	mov     n[0], a
 				;182		uint8_t i;
 				;183		for (i = 0; i < n; i++)
-0127	5F73	clr     i[0]
+0127	5F5F	clr     i[0]
 				L0128:
-0128	4773	mov     a, i[0]
-0129	4272	sub     a, n[0]
+0128	475F	mov     a, i[0]
+0129	425E	sub     a, n[0]
 012A	3C0A	sz      C
 012B	293F	jmp     L013F
 				L013D:
-013D	54F3	inc     i[0]
+013D	54DF	inc     i[0]
 013E	2928	jmp     L0128
 				L013F:
 013F	0003	ret
 				;184		{
 				;185			if (EE_Write_Byte(addr + i, buff[i]) == 0)
-012C	4773	mov     a, i[0]
-012D	436F	add     a, addr[0]
+012C	475F	mov     a, i[0]
+012D	435B	add     a, addr[0]
 012E	40BE	mov     ra, a
-012F	4773	mov     a, i[0]
-0130	4370	add     a, buff[0]
+012F	475F	mov     a, i[0]
+0130	435C	add     a, buff[0]
 0131	0083	mov     MP1, a
 0132	1F05	clr     ACC
-0133	5371	adc     a, buff[1]
+0133	535D	adc     a, buff[1]
 0134	0081	mov     MP0, a
-0135	24C1	call    L04C1
-0136	40ED	mov     level, a
+0135	24C8	call    L04C8
+0136	40D9	mov     level, a
 0137	473E	mov     a, ra
 0138	20FA	call    _EE_Write_Byte
 0139	40BE	mov     ra, a
@@ -2361,7 +2437,7 @@
 				_EE_Read_Byte:
 				_EE_Read_Byte:
 0140	40BE	mov     ra, a
-0141	40ED	mov     addr[0], a
+0141	40D9	mov     addr[0], a
 				;192		uint16_t i = 0xFFFF;	
 				;193		_eea = addr;
 0142	473E	mov     a, ra
@@ -2463,42 +2539,22 @@
 				re DB DUP (?)
 				rf DB DUP (?)
 				rg DB DUP (?)
-				ra1c DB DUP (?)
-				rb1c DB DUP (?)
-				rc1c DB DUP (?)
-				rd20 DB DUP (?)
-				rb20 DB DUP (?)
-				rf20 DB DUP (?)
-				rg20 DB DUP (?)
-				rh20 DB DUP (?)
-				ra20 DB DUP (?)
-				rc20 DB DUP (?)
-				re20 DB DUP (?)
-				r11c DB DUP (?)
-				r21c DB DUP (?)
-				r31c DB DUP (?)
-				r41c DB DUP (?)
-				r51c DB DUP (?)
-				r61c DB DUP (?)
-				r71c DB DUP (?)
-				r120 DB DUP (?)
-				r220 DB DUP (?)
-				r320 DB DUP (?)
-				r420 DB DUP (?)
-				r520 DB DUP (?)
-				r620 DB DUP (?)
-				r720 DB DUP (?)
-				r12c DB DUP (?)
-				r22c DB DUP (?)
-				r128 DB DUP (?)
-				r228 DB DUP (?)
-				r328 DB DUP (?)
-				r428 DB DUP (?)
-				r528 DB DUP (?)
-				r628 DB DUP (?)
-				r728 DB DUP (?)
+				ra00 DB DUP (?)
+				rb00 DB DUP (?)
+				rc00 DB DUP (?)
+				rd00 DB DUP (?)
+				rf00 DB DUP (?)
+				rg00 DB DUP (?)
+				rh00 DB DUP (?)
+				re00 DB DUP (?)
+				r100 DB DUP (?)
+				r200 DB DUP (?)
+				r300 DB DUP (?)
+				r400 DB DUP (?)
+				r500 DB DUP (?)
+				r600 DB DUP (?)
+				r700 DB DUP (?)
 				u8temp DB DUP (?) ; u8temp
-				sel DB DUP (?) ; sel
 				_Led_Scan_2 DB DUP (?)
 				level DB DUP (?) ; level
 				addr DB DUP (?) ; addr

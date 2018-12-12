@@ -91,7 +91,7 @@ void loop()
   //Serial.write(payload, 8); Serial.println();
 
   Set_Height(height++);
-  delay(200);
+  delay(500);
 }
 
 

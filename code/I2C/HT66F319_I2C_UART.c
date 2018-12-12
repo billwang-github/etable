@@ -587,60 +587,128 @@ DEFINE_ISR(Int_UART, 0x2C)
 	_uartf = 0;
 }
 
+//DEFINE_ISR(Int_I2C, 0x28)
+//{
+//	volatile uint8_t u8temp;
+//	//EMI_OFF();
+//	
+//	FeedWatchDog();
+//	if (I2C_TIMEOUT == 1)
+//	{
+//		I2C_TIMEOUT_EN = 1;
+//		I2C_TIMEOUT = 0;
+//	}
+//	else 
+//	{
+//		if (I2C_ADDR_MATCH == 1)	// address match
+//		{
+////			ptr_i2c_tx_buff = 0;
+////			ptr_i2c_rx_buff = 0;
+//			if (I2C_READ == 1) // master request data
+//			{
+//				I2C_TRANSMITTER = 1;
+//				ptr_i2c_tx_buff = 0;
+//				I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff];
+//				ptr_i2c_tx_buff++;			
+//			}	
+//			else // master feed data
+//			{
+//				I2C_TRANSMITTER = 0;
+//				I2C_TX_NOACK = 0;				
+//				ptr_i2c_rx_buff = 0;
+//				u8temp = I2C_DATA; //dummy read
+//			}
+//		}
+//		else  // data transfer
+//		{
+//			if (I2C_TRANSMITTER == 0) // master feed data
+//			{
+//				//if (ptr_i2c_rx_buff < (BUFF_LEN - 1))
+//				if (ptr_i2c_rx_buff < BUFF_LEN )
+//				{	
+//					buff_i2c_rx[ptr_i2c_rx_buff] = I2C_DATA;				
+//					GCC_NOP();						
+//					ptr_i2c_rx_buff ++;	 // ptr_i2c_rx_buff is the next saved buffer address	
+//				}
+//
+//			}
+//			else // master request data
+//			{
+//				if (I2C_RX_NOACK == 0) // ack
+//				{
+//					I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff];
+//					ptr_i2c_tx_buff++;	
+//				}
+//				else // no ack, return to RX mode
+//				{
+//					I2C_TRANSMITTER = 0;
+//					I2C_TX_NOACK = 0;
+//					u8temp = I2C_DATA; //dummy read
+//				}
+//			}
+//		}
+//	}
+//
+//	I2C_INT_FLAG = 0;	
+//	//EMI_ON();
+//}
+
 DEFINE_ISR(Int_I2C, 0x28)
 {
 	volatile uint8_t u8temp;
-	EMI_OFF();
+	//EMI_OFF();
 	
 	FeedWatchDog();
-	if (I2C_TIMEOUT == 1)
+	if (_i2ctof == 1)
 	{
-		I2C_TIMEOUT_EN = 1;
-		I2C_TIMEOUT = 0;
+		_i2ctoen = 1;
+		_i2ctof = 0;
 	}
 	else 
 	{
-		if (I2C_ADDR_MATCH == 1)	// address match
+		if (_iichaas == 1)	// address match
 		{
-			ptr_i2c_tx_buff = 0;
-			if (I2C_READ == 1) // master request data
+//			ptr_i2c_tx_buff = 0;
+//			ptr_i2c_rx_buff = 0;
+			if (_iicsrw == 1) // master request data
 			{
-				I2C_TRANSMITTER = 1;
-				//ptr_i2c_tx_buff = 0;
-				I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff];
-				ptr_i2c_tx_buff++;			
+				_iichtx = 1;
+				ptr_i2c_tx_buff = 0;
+				I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff++];
+				//ptr_i2c_tx_buff++;			
 			}	
 			else // master feed data
 			{
-				I2C_TRANSMITTER = 0;
-				I2C_TX_NOACK = 0;				
-				//ptr_i2c_rx_buff = 0;
+				_iichtx = 0;
+				_iictxak = 0;				
+				ptr_i2c_rx_buff = 0;
 				u8temp = I2C_DATA; //dummy read
 			}
 		}
 		else  // data transfer
 		{
-			if (I2C_TRANSMITTER == 0) // master feed data
+			if (_iichtx == 0) // master feed data
 			{
-				if (ptr_i2c_rx_buff < (BUFF_LEN - 1))
+				//if (ptr_i2c_rx_buff < (BUFF_LEN - 1))
+				if (ptr_i2c_rx_buff < BUFF_LEN )
 				{	
-					buff_i2c_rx[ptr_i2c_rx_buff] = I2C_DATA;				
-					GCC_NOP();						
-					ptr_i2c_rx_buff ++;	 // ptr_i2c_rx_buff is the next saved buffer address	
+					buff_i2c_rx[ptr_i2c_rx_buff++] = I2C_DATA;				
+					//GCC_NOP();						
+					//ptr_i2c_rx_buff ++;	 // ptr_i2c_rx_buff is the next saved buffer address	
 				}
 
 			}
 			else // master request data
 			{
-				if (I2C_RX_NOACK == 0) // ack
+				if (_iicrxak == 0) // ack
 				{
-					I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff];
-					ptr_i2c_tx_buff++;	
+					I2C_DATA = buff_i2c_tx[ptr_i2c_tx_buff++];
+					//ptr_i2c_tx_buff++;	
 				}
 				else // no ack, return to RX mode
 				{
-					I2C_TRANSMITTER = 0;
-					I2C_TX_NOACK = 0;
+					_iichtx = 0;
+					_iictxak = 0;
 					u8temp = I2C_DATA; //dummy read
 				}
 			}
@@ -648,9 +716,8 @@ DEFINE_ISR(Int_I2C, 0x28)
 	}
 
 	I2C_INT_FLAG = 0;	
-	EMI_ON();
+	//EMI_ON();
 }
-
 void Power_On_Reset(void)
 {
 	_lvrc = 0;	
